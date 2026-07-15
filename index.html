@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script>document.documentElement.classList.add('js');</script>
-    <title>Водитель категории СЕ — Работа на DAF XF 105</title>"viewport" content="width=device-width, initial-scale=1.0">
     <title>Водитель категории СЕ — Работа на DAF XF 105</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,7 +16,6 @@
             --color-cork-border: #40372e;
             --color-driftwood: #6c5f51;
             --color-ember-accent: #dc5000;
-            --color-pure-black: #000000;
 
             --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 
@@ -28,9 +26,7 @@
             --transition-reveal: opacity 0.6s ease, transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
 
         body {
             margin: 0;
@@ -45,68 +41,36 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
-        h1, h2, h3 {
-            margin: 0;
-            font-weight: 500;
-            text-transform: uppercase;
-            line-height: 0.9;
-        }
-
+        h1, h2, h3 { margin: 0; font-weight: 500; text-transform: uppercase; line-height: 0.9; }
         h1 { font-size: 32px; }
         h2 { font-size: 28px; }
         h3 { font-size: 20px; }
-
         p { margin: 0; }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        button {
-            border: none;
-            background: none;
-            cursor: pointer;
-            font-family: inherit;
-        }
-
-        ul, ol {
-            margin: 0;
-            padding: 0;
-            list-style: none;
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-        }
+        a { color: inherit; text-decoration: none; }
+        button { border: none; background: none; cursor: pointer; font-family: inherit; }
+        ul, ol { margin: 0; padding: 0; list-style: none; }
+        img { max-width: 100%; height: auto; display: block; }
 
         .nav {
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
+            top: 0; left: 0; right: 0;
             z-index: 100;
             background-color: rgba(16, 9, 4, 0.85);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
             border-bottom: 1px solid var(--color-cork-border);
         }
-
         .nav.scrolled {
             background-color: rgba(16, 9, 4, 0.95);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
         }
-
         .nav-inner {
             display: flex;
             align-items: center;
             justify-content: space-between;
             padding: 16px 24px;
         }
-
         .nav-logo {
             font-weight: 500;
             font-size: 14px;
@@ -114,12 +78,7 @@
             color: var(--color-warm-cream);
             letter-spacing: 0.02em;
         }
-
-        .nav-links {
-            display: none;
-            gap: 24px;
-        }
-
+        .nav-links { display: none; gap: 24px; }
         .nav-link {
             font-size: 12px;
             font-weight: 500;
@@ -129,11 +88,7 @@
             padding: 8px 0;
             transition: opacity 0.2s ease;
         }
-
-        .nav-link:hover {
-            opacity: 0.7;
-        }
-
+        .nav-link:hover { opacity: 0.7; }
         .nav-open {
             display: block;
             background: none;
@@ -141,7 +96,6 @@
             cursor: pointer;
             padding: 8px;
         }
-
         .nav-open span {
             display: block;
             width: 24px;
@@ -150,7 +104,6 @@
             margin: 5px 0;
             transition: transform 0.3s ease, opacity 0.3s ease;
         }
-
         .mobile-menu {
             display: none;
             flex-direction: column;
@@ -159,38 +112,20 @@
             border-top: 1px solid var(--color-cork-border);
             padding: 16px 24px;
         }
-
-        .nav.open .mobile-menu {
-            display: flex;
-        }
-
+        .nav.open .mobile-menu { display: flex; }
         .mobile-menu .nav-link {
             padding: 12px 0;
             font-size: 14px;
             border-bottom: 1px dashed var(--color-cork-border);
         }
-
-        .mobile-menu .nav-link:last-child {
-            border-bottom: none;
-        }
+        .mobile-menu .nav-link:last-child { border-bottom: none; }
 
         .js .reveal {
             opacity: 0;
             transform: translateY(24px);
             transition-delay: calc(var(--index, 0) * 100ms);
         }
-
-        .reveal {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .reveal.visible {
-            opacity: 0;
-            transform: translateY(24px);
-            transition-delay: calc(var(--index, 0) * 100ms);
-        }
-
+        .reveal { opacity: 1; transform: translateY(0); }
         .reveal.visible {
             opacity: 1;
             transform: translateY(0);
@@ -212,11 +147,7 @@
             min-height: 44px;
             transition: background-color 0.2s ease, transform 0.2s ease;
         }
-
-        .btn-pill:hover {
-            background-color: #4a2f1c;
-            transform: translateY(-1px);
-        }
+        .btn-pill:hover { background-color: #4a2f1c; transform: translateY(-1px); }
 
         .btn-ghost {
             display: inline-flex;
@@ -234,11 +165,7 @@
             min-height: 44px;
             transition: background-color 0.2s ease, transform 0.2s ease;
         }
-
-        .btn-ghost:hover {
-            background-color: rgba(255, 237, 215, 0.08);
-            transform: translateY(-1px);
-        }
+        .btn-ghost:hover { background-color: rgba(255, 237, 215, 0.08); transform: translateY(-1px); }
 
         .section {
             min-height: 100dvh;
@@ -247,15 +174,8 @@
             justify-content: center;
             padding: 80px 24px 48px;
         }
-
-        .section-title {
-            margin-bottom: 32px;
-        }
-
-        .section-text {
-            color: var(--color-driftwood);
-            max-width: 640px;
-        }
+        .section-title { margin-bottom: 32px; }
+        .section-text { color: var(--color-driftwood); max-width: 640px; }
 
         .divider-dashed {
             border: none;
@@ -284,7 +204,6 @@
             padding: 80px 24px 48px;
             position: relative;
         }
-
         .hero-label {
             font-size: 14px;
             font-weight: 500;
@@ -293,13 +212,11 @@
             letter-spacing: 0.06em;
             margin-bottom: 16px;
         }
-
         .hero-title {
             font-size: 32px;
             max-width: 680px;
             margin-bottom: 16px;
         }
-
         .hero-subtitle {
             font-size: 20px;
             font-weight: 500;
@@ -308,26 +225,22 @@
             line-height: 0.9;
             margin-bottom: 16px;
         }
-
         .hero-text {
             color: var(--color-driftwood);
             max-width: 480px;
             margin-bottom: 32px;
         }
-
         .hero-buttons {
             display: flex;
             flex-wrap: wrap;
             gap: 12px;
             margin-bottom: 40px;
         }
-
         .hero-triggers {
             display: flex;
             flex-wrap: wrap;
             gap: 24px;
         }
-
         .trigger-item {
             font-size: 14px;
             font-weight: 500;
@@ -337,7 +250,6 @@
             position: relative;
             padding-left: 16px;
         }
-
         .trigger-item::before {
             content: '';
             position: absolute;
@@ -356,7 +268,6 @@
             gap: 16px;
             margin-bottom: 16px;
         }
-
         .condition-card .card-value {
             font-size: 24px;
             font-weight: 500;
@@ -364,7 +275,6 @@
             line-height: 0.9;
             margin-bottom: 8px;
         }
-
         .condition-card .card-desc {
             font-size: 14px;
             color: var(--color-driftwood);
@@ -377,22 +287,14 @@
             flex-direction: column;
             gap: 32px;
         }
-
         .benefit-item {
             display: grid;
             grid-template-columns: 1fr;
             gap: 16px;
             align-items: start;
         }
-
-        .benefit-content h3 {
-            margin-bottom: 8px;
-        }
-
-        .benefit-content p {
-            color: var(--color-driftwood);
-        }
-
+        .benefit-content h3 { margin-bottom: 8px; }
+        .benefit-content p { color: var(--color-driftwood); }
         .benefit-icon {
             width: 48px;
             height: 48px;
@@ -402,7 +304,6 @@
             align-items: center;
             justify-content: center;
         }
-
         .benefit-icon svg {
             width: 24px;
             height: 24px;
@@ -415,14 +316,8 @@
             gap: 0;
             margin-top: 32px;
         }
-
-        .equipment-feature {
-            padding: 16px 0;
-        }
-
-        .equipment-feature p {
-            color: var(--color-driftwood);
-        }
+        .equipment-feature { padding: 16px 0; }
+        .equipment-feature p { color: var(--color-driftwood); }
 
         .routes-grid {
             display: grid;
@@ -430,7 +325,6 @@
             gap: 12px;
             margin-top: 24px;
         }
-
         .route-tag {
             background-color: var(--color-bark-brown);
             border-radius: var(--radius-card);
@@ -448,13 +342,11 @@
             gap: 16px;
             margin-bottom: 32px;
         }
-
         .req-item {
             display: flex;
             align-items: flex-start;
             gap: 12px;
         }
-
         .req-marker {
             width: 6px;
             height: 6px;
@@ -463,29 +355,23 @@
             flex-shrink: 0;
             margin-top: 8px;
         }
-
-        .req-item p {
-            color: var(--color-driftwood);
-        }
+        .req-item p { color: var(--color-driftwood); }
 
         .footer {
             min-height: auto;
             padding: 80px 24px 48px;
         }
-
         .contacts-grid {
             display: grid;
             grid-template-columns: 1fr;
             gap: 16px;
             margin: 32px 0;
         }
-
         .contact-card {
             background-color: var(--color-bark-brown);
             border-radius: var(--radius-card);
             padding: 24px;
         }
-
         .contact-label {
             font-size: 12px;
             font-weight: 500;
@@ -494,21 +380,18 @@
             letter-spacing: 0.04em;
             margin-bottom: 8px;
         }
-
         .contact-value {
             font-size: 16px;
             font-weight: 500;
             text-transform: uppercase;
             word-break: break-all;
         }
-
         .footer-buttons {
             display: flex;
             flex-wrap: wrap;
             gap: 12px;
             margin-bottom: 24px;
         }
-
         .footer-note {
             color: var(--color-driftwood);
             max-width: 520px;
@@ -625,9 +508,7 @@
                             <p>Медосмотры, ГСМ, ремонты — компания оплачивает всё.</p>
                         </div>
                         <div class="benefit-icon">
-                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                            </svg>
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
                         </div>
                     </div>
                     <div class="benefit-item">
@@ -636,9 +517,7 @@
                             <p>Не тратите свои деньги на простой.</p>
                         </div>
                         <div class="benefit-icon">
-                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
-                            </svg>
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
                         </div>
                     </div>
                     <div class="benefit-item">
@@ -647,9 +526,7 @@
                             <p>Начинаем работу по договору ГПХ. После успешного выполнения первых рейсов переводим на официальный трудовой договор (ТК РФ) с полным соцпакетом.</p>
                         </div>
                         <div class="benefit-icon">
-                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
-                            </svg>
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
                         </div>
                     </div>
                     <div class="benefit-item">
@@ -658,9 +535,7 @@
                             <p>Планируйте свое время, без простоев и перегруза.</p>
                         </div>
                         <div class="benefit-icon">
-                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
-                            </svg>
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg>
                         </div>
                     </div>
                 </div>
@@ -677,21 +552,13 @@
                 </div>
                 <div class="equipment-features">
                     <hr class="divider-dashed">
-                    <div class="equipment-feature">
-                        <p>Автоматическая КПП — меньше усталости в рейсе.</p>
-                    </div>
+                    <div class="equipment-feature"><p>Автоматическая КПП — меньше усталости в рейсе.</p></div>
                     <hr class="divider-dashed">
-                    <div class="equipment-feature">
-                        <p>Собственное СТО компании — быстрый ремонт без очередей.</p>
-                    </div>
+                    <div class="equipment-feature"><p>Собственное СТО компании — быстрый ремонт без очередей.</p></div>
                     <hr class="divider-dashed">
-                    <div class="equipment-feature">
-                        <p>Выезд штатного механика при крупноузловых поломках в рейсе.</p>
-                    </div>
+                    <div class="equipment-feature"><p>Выезд штатного механика при крупноузловых поломках в рейсе.</p></div>
                     <hr class="divider-dashed">
-                    <div class="equipment-feature">
-                        <p>Мелкие поломки (например, прокол колеса) водитель устраняет самостоятельно с полной компенсацией компанией расходов на ремонт.</p>
-                    </div>
+                    <div class="equipment-feature"><p>Мелкие поломки (например, прокол колеса) водитель устраняет самостоятельно с полной компенсацией компанией расходов на ремонт.</p></div>
                     <hr class="divider-dashed">
                 </div>
             </div>
@@ -763,6 +630,6 @@
         </footer>
     </main>
 
-    <script src="animations.js" defer></script>
+    <script src="animations.js"></script>"animations.js" defer></script>
 </body>
 </html>
