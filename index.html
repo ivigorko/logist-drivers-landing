@@ -611,7 +611,7 @@
         <!-- Hero -->
         <section id="hero" class="hero">
             <div class="container">
-                <div class="hero-inner reveal">
+                <div class="hero-inner">
                     <div class="hero-content">
                         <p class="hero-label">Работа для водителей</p>
                         <h1 class="hero-title">ВОДИТЕЛЬ С КАТЕГОРИЕЙ СЕ, ВЫ НАМ НУЖНЫ</h1>
@@ -831,7 +831,7 @@
                     observer.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+        }, { threshold: 0.1 });
 
         document.querySelectorAll('.reveal').forEach(function(el) {
             observer.observe(el);
