@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Водитель СЕ — Работа на DAF XF 105</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --canvas: #faf9f5;
+      --surface-card: #efe9de;
+      --surface-dark: #181715;
+      --surface-dark-elevated: #252320;
+      --primary: #cc785c;
+      --primary-active: #a9583e;
+      --primary-disabled: #e6dfd8;
+      --ink: #141413;
+      --body: #3d3d3a;
+      --muted: #6c6a64;
+      --on-primary: #ffffff;
+      --on-dark: #faf9f5;
+      --on-dark-soft: #a09d96;
+      --hairline: #e6dfd8;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 1.55;
+      color: var(--body);
+      background-color: var(--canvas);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    .display-xl {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 500;
+      font-size: 32px;
+      line-height: 1.05;
+      letter-spacing: -1.5px;
+      color: var(--ink);
+    }
+
+    .display-lg {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 500;
+      font-size: 28px;
+      line-height: 1.1;
+      letter-spacing: -1px;
+      color: var(--ink);
+    }
+
+    .display-md {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 500;
+      font-size: 24px;
+      line-height: 1.15;
+      letter-spacing: -0.5px;
+      color: var(--ink);
+    }
+
+    .title-md {
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 1.4;
+      color: var(--ink);
+    }
+
+    .body-md {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 1.55;
+      color: var(--body);
+    }
+
+    .body-sm {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--body);
+    }
+
+    .caption {
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: 13px;
+      line-height: 1.4;
+      color: var(--muted);
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 1;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      height: 44px;
+      min-height: 44px;
+      padding: 12px 20px;
+      border-radius: 8px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+      touch-action: manipulation;
+    }
+
+    .btn:focus-visible {
+      outline: 2px solid var(--primary);
+      outline-offset: 2px;
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: var(--on-primary);
+      border: 1px solid var(--primary);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--primary-active);
+      border-color: var(--primary-active);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(204, 120, 92, 0.25);
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      color: var(--ink);
+      border: 1px solid var(--hairline);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--muted);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    }
+
+    .btn-dark {
+      background-color: var(--surface-dark-elevated);
+      color: var(--on-dark);
+      border: 1px solid var(--surface-dark-elevated);
+    }
+
+    .btn-dark:hover {
+      background-color: var(--surface-dark);
+      border-color: var(--on-dark-soft);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    }
+
+    .btn-inverted {
+      background-color: var(--primary);
+      color: var(--on-primary);
+      border: 1px solid var(--primary);
+    }
+
+    .btn-inverted:hover {
+      background-color: var(--primary-active);
+      border-color: var(--primary-active);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(204, 120, 92, 0.35);
+    }
+
+    .section {
+      padding: 64px 0;
+    }
+
+    .grid {
+      display: grid;
+      gap: 24px;
+    }
+
+    .grid-2 {
+      grid-template-columns: 1fr;
+    }
+
+    .hero {
+      min-height: 100dvh;
+      display: flex;
+      align-items: center;
+      padding: 64px 0;
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      align-items: flex-start;
+      text-align: left;
+    }
+
+    .hero-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 500;
+      font-size: 24px;
+      line-height: 1.15;
+      color: var(--primary);
+      letter-spacing: -0.5px;
+    }
+
+    .hero-text {
+      max-width: 520px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .hero-triggers {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 8px;
+    }
+
+    .trigger {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--muted);
+    }
+
+    .trigger svg {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      color: var(--primary);
+    }
+
+    .hero-visual {
+      display: none;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .hero-visual img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+
+    .card {
+      background-color: var(--surface-card);
+      border-radius: 12px;
+      padding: 32px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    }
+
+    .card-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 500;
+      font-size: 28px;
+      line-height: 1.1;
+      letter-spacing: -0.5px;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+
+    .card-label {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--muted);
+    }
+
+    .conditions-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .condition-card {
+      background-color: var(--surface-card);
+      border-radius: 12px;
+      padding: 32px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .condition-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    }
+
+    .condition-card h3 {
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 1.4;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+
+    .condition-card p {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--body);
+    }
+
+    .tech-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .tech-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 1.55;
+      color: var(--body);
+    }
+
+    .tech-item svg {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      color: var(--primary);
+      margin-top: 2px;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      height: 36px;
+      padding: 0 14px;
+      border-radius: 8px;
+      background-color: var(--surface-card);
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: 13px;
+      line-height: 1;
+      color: var(--ink);
+      border: 1px solid var(--hairline);
+    }
+
+    .cta-band {
+      background-color: var(--surface-dark);
+      color: var(--on-dark);
+      border-radius: 12px;
+      padding: 48px 24px;
+    }
+
+    .cta-band h2 {
+      color: var(--on-dark);
+      margin-bottom: 16px;
+    }
+
+    .cta-band ul {
+      list-style: none;
+      margin: 16px 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .cta-band li {
+      position: relative;
+      padding-left: 24px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 1.55;
+      color: var(--on-dark-soft);
+    }
+
+    .cta-band li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: var(--primary);
+    }
+
+    .cta-band .btn {
+      margin-top: 24px;
+    }
+
+    .footer {
+      background-color: var(--surface-dark);
+      color: var(--on-dark-soft);
+      padding: 64px 0 32px;
+    }
+
+    .footer h2 {
+      color: var(--on-dark);
+      margin-bottom: 24px;
+    }
+
+    .footer-contacts {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .footer-contact {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 1.55;
+      color: var(--on-dark-soft);
+    }
+
+    .footer-contact a {
+      color: var(--on-dark);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s ease;
+    }
+
+    .footer-contact a:hover {
+      border-bottom-color: var(--on-dark-soft);
+    }
+
+    .footer-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 8px;
+      margin-bottom: 24px;
+    }
+
+    .footer-bottom {
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 13px;
+      line-height: 1.4;
+      color: var(--on-dark-soft);
+    }
+
+    .section-header {
+      margin-bottom: 32px;
+      max-width: 640px;
+    }
+
+    .section-header h2 {
+      margin-bottom: 12px;
+    }
+
+    @media (min-width: 768px) {
+      .container {
+        padding: 0 32px;
+      }
+
+      .section {
+        padding: 96px 0;
+      }
+
+      .display-xl {
+        font-size: 48px;
+      }
+
+      .display-lg {
+        font-size: 36px;
+      }
+
+      .display-md {
+        font-size: 28px;
+      }
+
+      .hero {
+        padding: 96px 0;
+      }
+
+      .hero-inner {
+        grid-template-columns: 1fr 1fr;
+        gap: 64px;
+      }
+
+      .hero-visual {
+        display: block;
+      }
+
+      .grid-2 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .conditions-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .tech-list {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .cta-band {
+        padding: 64px 48px;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .container {
+        padding: 0 48px;
+      }
+
+      .display-xl {
+        font-size: 64px;
+      }
+
+      .display-lg {
+        font-size: 48px;
+      }
+
+      .display-md {
+        font-size: 36px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+      .btn, .card, .condition-card {
+        transition: none;
+      }
+      .btn:hover, .card:hover, .condition-card:hover {
+        transform: none;
+      }
+    }
+
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--primary);
+      outline-offset: 2px;
+    }
+  </style>
+</head>
+<body>
+
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="hero-content">
+        <h1 class="display-xl">Водитель с категорией СЕ, вы нам нужны на DAF XF 105 с автоматической КПП</h1>
+        <p class="hero-subtitle">200 000 – 300 000 ₽ в месяц + 1 000 ₽ суточные ежедневно</p>
+        <p class="body-md hero-text">Рейсы из Крыма по ЮФО. Все расходы на компанию. Суточные выплачиваем вперед.</p>
+        <div class="hero-actions">
+          <a href="#" class="btn btn-primary">Написать в Telegram</a>
+          <a href="#" class="btn btn-secondary">Написать в Max</a>
+          <a href="#" class="btn btn-secondary">Позвонить</a>
+        </div>
+        <div class="hero-triggers">
+          <span class="trigger">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+            Суточные 1000 ₽/день
+          </span>
+          <span class="trigger">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            Все расходы оплачиваем
+          </span>
+          <span class="trigger">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+            Собственный сервис
+          </span>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <img src="https://picsum.photos/seed/truck/800/600" alt="Грузовик DAF XF 105">
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="display-lg">Сколько вы будете зарабатывать</h2>
+      </div>
+      <div class="grid grid-2">
+        <div class="card">
+          <div class="card-value">20 000 – 40 000 ₽</div>
+          <div class="card-label">за рейс 300–500 км</div>
+        </div>
+        <div class="card">
+          <div class="card-value">40 000 – 80 000 ₽</div>
+          <div class="card-label">за рейс 700–1000 км</div>
+        </div>
+        <div class="card">
+          <div class="card-value">200 000 – 300 000 ₽</div>
+          <div class="card-label">в месяц (при 5–9 рейсах)</div>
+        </div>
+        <div class="card">
+          <div class="card-value">+ 1 000 ₽/день</div>
+          <div class="card-label">суточные выплачиваем вперед</div>
+        </div>
+      </div>
+      <p class="body-md" style="margin-top: 24px;">Средняя ставка — 25 ₽/км. Оплата зависит от типа груза (зерновые, деловой металл, удобрения, сахар, мука), перевезенного тоннажа и километража.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="display-lg">Условия, о которых не нужно переживать</h2>
+      </div>
+      <div class="conditions-grid">
+        <div class="condition-card">
+          <h3>Все расходы на нас</h3>
+          <p>Медосмотры, ГСМ, ремонты — компания оплачивает всё.</p>
+        </div>
+        <div class="condition-card">
+          <h3>Стоянки оплачиваем</h3>
+          <p>Не тратите свои деньги на простой.</p>
+        </div>
+        <div class="condition-card">
+          <h3>Гибкое и честное оформление</h3>
+          <p>Начинаем работу по договору ГПХ. После успешного выполнения первых рейсов переводим на официальный трудовой договор (ТК РФ) с полным соцпакетом.</p>
+        </div>
+        <div class="condition-card">
+          <h3>5–9 рейсов в месяц</h3>
+          <p>Планируйте свое время, без простоев и перегруза.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="display-lg">Работайте на надежной технике</h2>
+        <p class="body-md" style="margin-top: 12px;">Тягачи DAF XF 105 с автоматической трансмиссией. Полуприцепы Krone. Год выпуска автомобилей — 2013. По истечении года работы возможна замена автомобиля на более новый.</p>
+      </div>
+      <div class="tech-list">
+        <div class="tech-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          <span>Автоматическая КПП — меньше усталости в рейсе.</span>
+        </div>
+        <div class="tech-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+          <span>Собственное СТО компании — быстрый ремонт без очередей.</span>
+        </div>
+        <div class="tech-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Выезд штатного механика при крупноузловых поломках в рейсе.</span>
+        </div>
+        <div class="tech-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          <span>Мелкие поломки (например, прокол колеса) водитель устраняет самостоятельно с полной компенсацией компанией расходов на ремонт.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="display-lg">Где и что возим</h2>
+        <p class="body-md" style="margin-top: 12px;">Основное направление: из Крыма по ЮФО. Дальние рейсы: возможны направления до Урала.</p>
+      </div>
+      <div class="chips">
+        <span class="chip">Зерновые</span>
+        <span class="chip">Деловой металл</span>
+        <span class="chip">Удобрения</span>
+        <span class="chip">Сахар</span>
+        <span class="chip">Мука</span>
+      </div>
+      <p class="body-md" style="margin-top: 24px;">Разнообразие грузов означает разные ставки. Вы сможете выбирать то, что подходит именно вам.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="cta-band">
+        <h2 class="display-md">Кого мы ищем</h2>
+        <ul>
+          <li>Категория прав: СЕ</li>
+          <li>Опыт: рассматриваем всех, кто готов работать.</li>
+          <li>Не важно, сколько вы за рулем — важно ваше желание работать и зарабатывать.</li>
+        </ul>
+        <a href="#" class="btn btn-inverted">Написать в Telegram</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <h2 class="display-md">Свяжитесь с нами удобным способом</h2>
+      <div class="footer-contacts">
+        <div class="footer-contact">Telegram: <a href="#">[Telegram]</a></div>
+        <div class="footer-contact">Max: <a href="#">[Max]</a></div>
+        <div class="footer-contact">Телефон: <a href="#">[Телефон]</a></div>
+      </div>
+      <div class="footer-actions">
+        <a href="#" class="btn btn-inverted">Написать в Telegram</a>
+        <a href="#" class="btn btn-dark">Написать в Max</a>
+        <a href="#" class="btn btn-dark">Позвонить сейчас</a>
+      </div>
+      <p class="body-md" style="color: var(--on-dark-soft); margin-top: 8px;">Звоните или пишите прямо сейчас — ответим на все вопросы и поможем начать зарабатывать.</p>
+      <div class="footer-bottom">
+        © 2026 Логистическая компания. Все права защищены.
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
