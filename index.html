@@ -6,14 +6,17 @@
     <title>Водитель категории СЕ — Работа на DAF XF 105</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --color-walnut-shadow: #100904;
+            --color-bg-primary: #100904;
+            --color-bg-secondary: #150a04;
+            --color-bg-accent: #1a0e06;
             --color-warm-cream: #ffedd7;
+            --color-bright-cream: #fff5e8;
             --color-bark-brown: #382416;
             --color-cork-border: #40372e;
-            --color-driftwood: #6c5f51;
+            --color-driftwood: #8a7d6e;
             --color-ember-accent: #dc5000;
 
             --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -21,8 +24,6 @@
             --radius-pill: 36px;
             --radius-ghost: 22.5px;
             --radius-card: 12px;
-
-            --transition-reveal: opacity 0.6s ease, transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
         html { scroll-behavior: smooth; }
@@ -34,19 +35,19 @@
             padding: 0;
             font-family: var(--font-sans);
             font-weight: 400;
-            font-size: 18px;
-            line-height: 1.26;
+            font-size: 16px;
+            line-height: 1.5;
             color: var(--color-warm-cream);
-            background-color: var(--color-walnut-shadow);
+            background-color: var(--color-bg-primary);
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             overflow-x: hidden;
         }
 
-        h1, h2, h3 { margin: 0; font-weight: 500; text-transform: uppercase; line-height: 0.9; }
-        h1 { font-size: 32px; }
+        h1, h2, h3 { margin: 0; font-weight: 600; line-height: 1.1; }
+        h1 { font-size: 36px; text-transform: uppercase; }
         h2 { font-size: 28px; }
-        h3 { font-size: 20px; }
+        h3 { font-size: 18px; font-weight: 600; }
         p { margin: 0; }
         a { color: inherit; text-decoration: none; }
         button { border: none; background: none; cursor: pointer; font-family: inherit; }
@@ -65,7 +66,7 @@
             position: fixed;
             top: 0; left: 0; right: 0;
             z-index: 100;
-            background-color: rgba(16, 9, 4, 0.85);
+            background-color: rgba(16, 9, 4, 0.9);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
             border-bottom: 1px solid var(--color-cork-border);
@@ -79,28 +80,28 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 16px 24px;
+            padding: 14px 24px;
             max-width: 1200px;
             margin: 0 auto;
         }
         .nav-logo {
-            font-weight: 500;
+            font-weight: 700;
             font-size: 14px;
             text-transform: uppercase;
             color: var(--color-warm-cream);
-            letter-spacing: 0.02em;
+            letter-spacing: 0.04em;
         }
-        .nav-links { display: none; gap: 24px; }
+        .nav-links { display: none; gap: 28px; }
         .nav-link {
             font-size: 12px;
             font-weight: 500;
             text-transform: uppercase;
-            color: var(--color-warm-cream);
+            color: var(--color-driftwood);
             letter-spacing: 0.04em;
             padding: 8px 0;
-            transition: opacity 0.2s ease;
+            transition: color 0.2s ease;
         }
-        .nav-link:hover { opacity: 0.7; }
+        .nav-link:hover { color: var(--color-warm-cream); }
         .nav-open {
             display: block;
             background: none;
@@ -120,9 +121,9 @@
             display: none;
             flex-direction: column;
             gap: 0;
-            background-color: var(--color-walnut-shadow);
+            background-color: var(--color-bg-primary);
             border-top: 1px solid var(--color-cork-border);
-            padding: 16px 24px;
+            padding: 12px 24px;
             max-width: 1200px;
             margin: 0 auto;
         }
@@ -134,43 +135,23 @@
         }
         .mobile-menu .nav-link:last-child { border-bottom: none; }
 
-        /* Reveal animations - visible by default, hidden when JS adds class */
-        .reveal {
-            opacity: 1;
-            transform: translateY(0);
-            transition: var(--transition-reveal);
-        }
-        .reveal.reveal-hidden {
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
         /* Buttons */
         .btn-pill {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            background-color: var(--color-bark-brown);
-            color: var(--color-warm-cream);
+            background-color: var(--color-ember-accent);
+            color: var(--color-bg-primary);
             border-radius: var(--radius-pill);
-            padding: 14px 24px;
-            font-size: 14px;
-            font-weight: 500;
+            padding: 14px 28px;
+            font-size: 13px;
+            font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.02em;
-            min-height: 44px;
+            min-height: 48px;
             transition: background-color 0.2s ease, transform 0.2s ease;
         }
-        .btn-pill:hover { background-color: #4a2f1c; transform: translateY(-1px); }
+        .btn-pill:hover { background-color: #f06010; transform: translateY(-1px); }
 
         .btn-ghost {
             display: inline-flex;
@@ -178,28 +159,37 @@
             justify-content: center;
             background-color: transparent;
             color: var(--color-warm-cream);
-            border: 1px solid var(--color-warm-cream);
+            border: 1px solid var(--color-cork-border);
             border-radius: var(--radius-ghost);
-            padding: 14px 24px;
-            font-size: 14px;
+            padding: 14px 28px;
+            font-size: 13px;
             font-weight: 500;
             text-transform: uppercase;
             letter-spacing: 0.02em;
-            min-height: 44px;
-            transition: background-color 0.2s ease, transform 0.2s ease;
+            min-height: 48px;
+            transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
         }
-        .btn-ghost:hover { background-color: rgba(255, 237, 215, 0.08); transform: translateY(-1px); }
+        .btn-ghost:hover { background-color: rgba(255, 237, 215, 0.06); border-color: var(--color-warm-cream); transform: translateY(-1px); }
 
         /* Sections */
         .section {
-            min-height: 100dvh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 80px 0 48px;
+            padding: 72px 0 56px;
         }
-        .section-title { margin-bottom: 32px; }
-        .section-text { color: var(--color-driftwood); max-width: 640px; }
+        .section-title {
+            margin-bottom: 32px;
+            color: var(--color-bright-cream);
+        }
+        .section-text {
+            color: var(--color-driftwood);
+            max-width: 560px;
+            line-height: 1.6;
+        }
+
+        .bg-primary { background-color: var(--color-bg-primary); }
+        .bg-secondary { background-color: var(--color-bg-secondary); }
+        .bg-accent {
+            background: linear-gradient(180deg, var(--color-bg-primary) 0%, var(--color-bg-accent) 50%, var(--color-bg-primary) 100%);
+        }
 
         .divider-dashed {
             border: none;
@@ -211,23 +201,13 @@
                 transparent 6px,
                 transparent 12px
             );
-            margin: 24px 0;
+            margin: 16px 0;
         }
 
-        .card {
-            background-color: var(--color-bark-brown);
-            border-radius: var(--radius-card);
-            padding: 24px;
-        }
-
-        /* Hero - split screen on desktop */
+        /* Hero */
         .hero {
-            min-height: 100dvh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 80px 0 48px;
-            position: relative;
+            padding: 96px 0 64px;
+            min-height: auto;
         }
         .hero-inner {
             display: flex;
@@ -242,59 +222,65 @@
             width: 100%;
             min-height: 280px;
             border-radius: var(--radius-card);
-            background: linear-gradient(135deg, var(--color-bark-brown) 0%, var(--color-walnut-shadow) 100%);
-            background-image: url('images/hero-truck.jpg');
-            background-size: cover;
-            background-position: center;
+            background: linear-gradient(135deg, #1a0e06 0%, #2a1810 40%, #1a0e06 100%);
             position: relative;
             overflow: hidden;
         }
-        .hero-visual::after {
+        .hero-visual::before {
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(to top, var(--color-walnut-shadow) 0%, transparent 50%);
+            background: radial-gradient(ellipse at 30% 50%, rgba(220, 80, 0, 0.08) 0%, transparent 60%);
         }
         .hero-label {
-            font-size: 14px;
-            font-weight: 500;
+            font-size: 12px;
+            font-weight: 600;
             text-transform: uppercase;
             color: var(--color-ember-accent);
-            letter-spacing: 0.06em;
+            letter-spacing: 0.08em;
             margin-bottom: 16px;
         }
         .hero-title {
-            font-size: 32px;
-            max-width: 680px;
+            font-size: 36px;
+            max-width: 600px;
             margin-bottom: 16px;
+            color: var(--color-bright-cream);
+            line-height: 1.05;
         }
         .hero-subtitle {
-            font-size: 20px;
-            font-weight: 500;
-            text-transform: uppercase;
+            font-size: 18px;
+            font-weight: 600;
             color: var(--color-ember-accent);
-            line-height: 0.9;
-            margin-bottom: 16px;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+        .hero-salary {
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--color-bright-cream);
+            max-width: 520px;
+            margin-bottom: 12px;
+            line-height: 1.3;
         }
         .hero-text {
             color: var(--color-driftwood);
             max-width: 480px;
-            margin-bottom: 32px;
+            margin-bottom: 28px;
+            line-height: 1.5;
         }
-        .hero-text + .hero-text { margin-top: 8px; }
         .hero-buttons {
             display: flex;
             flex-wrap: wrap;
             gap: 12px;
-            margin-bottom: 40px;
+            margin-bottom: 32px;
         }
         .hero-triggers {
             display: flex;
             flex-wrap: wrap;
-            gap: 24px;
+            gap: 20px;
         }
         .trigger-item {
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 500;
             text-transform: uppercase;
             color: var(--color-driftwood);
@@ -314,28 +300,54 @@
             border-radius: 50%;
         }
 
-        /* Conditions */
+        /* Conditions / Earnings */
         .conditions-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 16px;
-            margin-bottom: 16px;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        .condition-card {
+            background-color: var(--color-bark-brown);
+            border-radius: var(--radius-card);
+            padding: 24px;
         }
         .condition-card .card-value {
-            font-size: 24px;
-            font-weight: 500;
-            text-transform: uppercase;
-            line-height: 0.9;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--color-bright-cream);
+            line-height: 1.1;
             margin-bottom: 8px;
         }
         .condition-card .card-desc {
-            font-size: 14px;
+            font-size: 13px;
             color: var(--color-driftwood);
+            font-weight: 500;
             text-transform: uppercase;
-            letter-spacing: 0.02em;
+            letter-spacing: 0.03em;
+        }
+        .condition-card-hero {
+            background: linear-gradient(135deg, var(--color-ember-accent) 0%, #b04000 100%);
+            border-radius: var(--radius-card);
+            padding: 28px;
+            text-align: center;
+        }
+        .condition-card-hero .card-value {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--color-bright-cream);
+            line-height: 1.1;
+            margin-bottom: 8px;
+        }
+        .condition-card-hero .card-desc {
+            font-size: 14px;
+            color: rgba(255, 245, 232, 0.85);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
         }
 
-        /* Benefits - fixed layout */
+        /* Benefits */
         .benefits-list {
             display: flex;
             flex-direction: column;
@@ -344,30 +356,39 @@
         .benefit-item {
             display: flex;
             flex-direction: row;
-            gap: 24px;
-            align-items: center;
-            justify-content: space-between;
+            gap: 20px;
+            align-items: flex-start;
             padding: 24px 0;
             border-bottom: 1px dashed var(--color-cork-border);
         }
         .benefit-item:last-child { border-bottom: none; }
-        .benefit-content { flex: 1; }
-        .benefit-content h3 { margin-bottom: 8px; }
-        .benefit-content p { color: var(--color-driftwood); }
         .benefit-icon {
-            width: 48px;
-            height: 48px;
+            width: 52px;
+            height: 52px;
             background-color: var(--color-bark-brown);
             border-radius: var(--radius-card);
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
+            margin-top: 2px;
         }
         .benefit-icon svg {
-            width: 24px;
-            height: 24px;
+            width: 26px;
+            height: 26px;
             fill: var(--color-ember-accent);
+        }
+        .benefit-content { flex: 1; }
+        .benefit-content h3 {
+            margin-bottom: 6px;
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--color-bright-cream);
+        }
+        .benefit-content p {
+            color: var(--color-driftwood);
+            line-height: 1.5;
+            font-size: 15px;
         }
 
         /* Equipment */
@@ -380,27 +401,30 @@
             width: 100%;
             min-height: 280px;
             border-radius: var(--radius-card);
-            background: linear-gradient(135deg, var(--color-bark-brown) 0%, var(--color-walnut-shadow) 100%);
-            background-image: url('images/equipment-truck.jpg');
-            background-size: cover;
-            background-position: center;
+            background: linear-gradient(135deg, #1a0e06 0%, #2a1810 40%, #1a0e06 100%);
             position: relative;
             overflow: hidden;
         }
-        .equipment-visual::after {
+        .equipment-visual::before {
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(to top, var(--color-walnut-shadow) 0%, transparent 50%);
+            background: radial-gradient(ellipse at 70% 50%, rgba(220, 80, 0, 0.08) 0%, transparent 60%);
         }
         .equipment-features {
             display: flex;
             flex-direction: column;
             gap: 0;
-            margin-top: 32px;
+            margin-top: 24px;
         }
-        .equipment-feature { padding: 16px 0; }
-        .equipment-feature p { color: var(--color-driftwood); }
+        .equipment-feature {
+            padding: 14px 0;
+        }
+        .equipment-feature p {
+            color: var(--color-driftwood);
+            line-height: 1.5;
+            font-size: 15px;
+        }
 
         /* Routes */
         .routes-inner {
@@ -412,68 +436,71 @@
             width: 100%;
             min-height: 280px;
             border-radius: var(--radius-card);
-            background: linear-gradient(135deg, var(--color-bark-brown) 0%, var(--color-walnut-shadow) 100%);
-            background-image: url('images/cargo-types.jpg');
-            background-size: cover;
-            background-position: center;
+            background: linear-gradient(135deg, #1a0e06 0%, #2a1810 40%, #1a0e06 100%);
             position: relative;
             overflow: hidden;
         }
-        .routes-visual::after {
+        .routes-visual::before {
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(to top, var(--color-walnut-shadow) 0%, transparent 50%);
+            background: radial-gradient(ellipse at 50% 30%, rgba(220, 80, 0, 0.08) 0%, transparent 60%);
         }
         .routes-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
             margin-top: 24px;
         }
         .route-tag {
             background-color: var(--color-bark-brown);
             border-radius: var(--radius-card);
-            padding: 16px;
-            font-size: 14px;
-            font-weight: 500;
+            padding: 14px 20px;
+            font-size: 13px;
+            font-weight: 600;
             text-transform: uppercase;
+            letter-spacing: 0.03em;
+            color: var(--color-bright-cream);
+            flex: 1 1 calc(33.333% - 10px);
+            min-width: 120px;
             text-align: center;
-            letter-spacing: 0.02em;
         }
 
         /* Requirements */
         .requirements-list {
             display: flex;
             flex-direction: column;
-            gap: 16px;
-            margin-bottom: 32px;
+            gap: 14px;
+            margin-bottom: 28px;
         }
         .req-item {
             display: flex;
             align-items: flex-start;
-            gap: 12px;
+            gap: 14px;
         }
         .req-marker {
-            width: 6px;
-            height: 6px;
+            width: 8px;
+            height: 8px;
             background-color: var(--color-ember-accent);
             border-radius: 50%;
             flex-shrink: 0;
-            margin-top: 8px;
+            margin-top: 7px;
         }
-        .req-item p { color: var(--color-driftwood); }
+        .req-item p {
+            color: var(--color-driftwood);
+            line-height: 1.5;
+            font-size: 16px;
+        }
 
         /* Footer / Contacts */
         .footer {
-            min-height: auto;
-            padding: 80px 0 48px;
+            padding: 72px 0 48px;
         }
         .contacts-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 16px;
-            margin: 32px 0;
+            gap: 12px;
+            margin: 28px 0;
         }
         .contact-card {
             background-color: var(--color-bark-brown);
@@ -481,18 +508,18 @@
             padding: 24px;
         }
         .contact-label {
-            font-size: 12px;
-            font-weight: 500;
+            font-size: 11px;
+            font-weight: 600;
             text-transform: uppercase;
             color: var(--color-driftwood);
-            letter-spacing: 0.04em;
+            letter-spacing: 0.06em;
             margin-bottom: 8px;
         }
         .contact-value {
-            font-size: 16px;
-            font-weight: 500;
-            text-transform: uppercase;
+            font-size: 15px;
+            font-weight: 600;
             word-break: break-all;
+            color: var(--color-bright-cream);
         }
         .footer-buttons {
             display: flex;
@@ -503,6 +530,8 @@
         .footer-note {
             color: var(--color-driftwood);
             max-width: 520px;
+            font-size: 15px;
+            line-height: 1.5;
         }
 
         /* Tablet */
@@ -510,18 +539,16 @@
             .nav-open { display: none; }
             .nav-links { display: flex; }
 
-            h1 { font-size: 41px; }
-            h2 { font-size: 36px; }
+            h1 { font-size: 48px; }
+            h2 { font-size: 34px; }
 
-            .section { padding: 96px 0 64px; }
-            .hero { padding: 96px 0 64px; }
-            .hero-title { font-size: 41px; }
+            .section { padding: 80px 0 64px; }
+            .hero { padding: 110px 0 80px; }
+            .hero-title { font-size: 48px; }
+            .hero-salary { font-size: 26px; }
             .hero-visual { min-height: 360px; }
 
-            .conditions-grid { grid-template-columns: 2fr 1fr; }
-            .conditions-grid .condition-card:nth-child(3) { grid-column: span 2; }
-
-            .routes-grid { grid-template-columns: repeat(3, 1fr); }
+            .conditions-grid { grid-template-columns: repeat(3, 1fr); }
 
             .contacts-grid { grid-template-columns: repeat(3, 1fr); }
 
@@ -531,11 +558,12 @@
 
         /* Desktop */
         @media (min-width: 1024px) {
-            h1 { font-size: 51px; }
-            h2 { font-size: 41px; }
-            h3 { font-size: 24px; }
+            h1 { font-size: 56px; }
+            h2 { font-size: 38px; }
+            h3 { font-size: 20px; }
 
-            .hero-title { font-size: 51px; }
+            .hero-title { font-size: 56px; }
+            .hero-salary { font-size: 28px; }
 
             .hero-inner {
                 flex-direction: row;
@@ -545,14 +573,11 @@
             .hero-content { flex: 1; }
             .hero-visual {
                 flex: 1;
-                min-height: 480px;
-                max-height: 560px;
+                min-height: 440px;
+                max-height: 520px;
             }
 
-            .conditions-grid { grid-template-columns: 2fr 1fr 1fr; }
-            .conditions-grid .condition-card:nth-child(3) { grid-column: span 1; }
-
-            .benefit-item { gap: 48px; padding: 32px 0; }
+            .benefit-item { gap: 24px; padding: 28px 0; }
 
             .equipment-inner {
                 flex-direction: row;
@@ -562,8 +587,8 @@
             .equipment-content { flex: 1; }
             .equipment-visual {
                 flex: 1;
-                min-height: 480px;
-                max-height: 560px;
+                min-height: 440px;
+                max-height: 520px;
             }
 
             .routes-inner {
@@ -574,8 +599,8 @@
             .routes-content { flex: 1; }
             .routes-visual {
                 flex: 1;
-                min-height: 480px;
-                max-height: 560px;
+                min-height: 440px;
+                max-height: 520px;
                 order: 2;
             }
             .routes-content { order: 1; }
@@ -609,19 +634,19 @@
 
     <main>
         <!-- Hero -->
-        <section id="hero" class="hero">
+        <section id="hero" class="hero bg-primary">
             <div class="container">
                 <div class="hero-inner">
                     <div class="hero-content">
                         <p class="hero-label">Работа для водителей</p>
-                        <h1 class="hero-title">ВОДИТЕЛЬ С КАТЕГОРИЕЙ СЕ, ВЫ НАМ НУЖНЫ</h1>
-                        <p class="hero-subtitle">НА DAF XF 105 С АВТОМАТИЧЕСКОЙ КПП</p>
-                        <p class="hero-text">200 000 – 300 000 ₽ В МЕСЯЦ + 1 000 ₽ СУТОЧНЫЕ ЕЖЕДНЕВНО</p>
+                        <h1 class="hero-title">Водитель с категорией СЕ, вы нам нужны</h1>
+                        <p class="hero-subtitle">На DAF XF 105 с автоматической КПП</p>
+                        <p class="hero-salary">200 000 – 300 000 ₽ в месяц + 1 000 ₽ суточные ежедневно</p>
                         <p class="hero-text">Рейсы из Крыма по ЮФО. Все расходы на компанию. Суточные выплачиваем вперед.</p>
                         <div class="hero-buttons">
-                            <a href="#contacts" class="btn-pill">НАПИСАТЬ В TELEGRAM</a>
-                            <a href="#contacts" class="btn-ghost">НАПИСАТЬ В MAX</a>
-                            <a href="#contacts" class="btn-ghost">ПОЗВОНИТЬ</a>
+                            <a href="#contacts" class="btn-pill">Написать в Telegram</a>
+                            <a href="#contacts" class="btn-ghost">Написать в Max</a>
+                            <a href="#contacts" class="btn-ghost">Позвонить</a>
                         </div>
                         <div class="hero-triggers">
                             <span class="trigger-item">Суточные 1000₽/день</span>
@@ -629,31 +654,31 @@
                             <span class="trigger-item">Собственный сервис</span>
                         </div>
                     </div>
-                    <div class="hero-visual" role="img" aria-label="Грузовик DAF XF 105"></div>
+                    <div class="hero-visual"></div>
                 </div>
             </div>
         </section>
 
         <!-- Conditions / Earnings -->
-        <section id="conditions" class="section">
+        <section id="conditions" class="section bg-accent">
             <div class="container">
-                <div class="reveal">
-                    <h2 class="section-title">СКОЛЬКО ВЫ БУДЕТЕ ЗАРАБАТЫВАТЬ</h2>
+                <div>
+                    <h2 class="section-title">Сколько вы будете зарабатывать</h2>
                     <div class="conditions-grid">
-                        <div class="card condition-card">
+                        <div class="condition-card">
                             <p class="card-value">20 000 – 40 000 ₽</p>
                             <p class="card-desc">за рейс 300–500 км</p>
                         </div>
-                        <div class="card condition-card">
+                        <div class="condition-card">
                             <p class="card-value">40 000 – 80 000 ₽</p>
                             <p class="card-desc">за рейс 700–1000 км</p>
                         </div>
-                        <div class="card condition-card">
+                        <div class="condition-card">
                             <p class="card-value">200 000 – 300 000 ₽</p>
                             <p class="card-desc">в месяц (при 5–9 рейсах)</p>
                         </div>
                     </div>
-                    <div class="card condition-card">
+                    <div class="condition-card-hero">
                         <p class="card-value">+ 1 000 ₽/день</p>
                         <p class="card-desc">суточные выплачиваем вперед</p>
                     </div>
@@ -663,45 +688,45 @@
         </section>
 
         <!-- Benefits -->
-        <section id="benefits" class="section">
+        <section id="benefits" class="section bg-secondary">
             <div class="container">
-                <div class="reveal">
-                    <h2 class="section-title">УСЛОВИЯ, О КОТОРЫХ НЕ НУЖНО ПЕРЕЖИВАТЬ</h2>
+                <div>
+                    <h2 class="section-title">Условия, о которых не нужно переживать</h2>
                     <div class="benefits-list">
                         <div class="benefit-item">
-                            <div class="benefit-content">
-                                <h3>ВСЕ РАСХОДЫ НА НАС</h3>
-                                <p>Медосмотры, ГСМ, ремонты — компания оплачивает всё.</p>
-                            </div>
                             <div class="benefit-icon">
                                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
                             </div>
+                            <div class="benefit-content">
+                                <h3>Все расходы на нас</h3>
+                                <p>Медосмотры, ГСМ, ремонты — компания оплачивает всё.</p>
+                            </div>
                         </div>
                         <div class="benefit-item">
-                            <div class="benefit-content">
-                                <h3>СТОЯНКИ ОПЛАЧИВАЕМ</h3>
-                                <p>Не тратите свои деньги на простой.</p>
-                            </div>
                             <div class="benefit-icon">
                                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M11.99 2C6.47 2 2 6.47 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
                             </div>
+                            <div class="benefit-content">
+                                <h3>Стоянки оплачиваем</h3>
+                                <p>Не тратите свои деньги на простой.</p>
+                            </div>
                         </div>
                         <div class="benefit-item">
-                            <div class="benefit-content">
-                                <h3>ГИБКОЕ И ЧЕСТНОЕ ОФОРМЛЕНИЕ</h3>
-                                <p>Начинаем работу по договору ГПХ. После успешного выполнения первых рейсов переводим на официальный трудовой договор (ТК РФ) с полным соцпакетом.</p>
-                            </div>
                             <div class="benefit-icon">
                                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
                             </div>
+                            <div class="benefit-content">
+                                <h3>Гибкое и честное оформление</h3>
+                                <p>Начинаем работу по договору ГПХ. После успешного выполнения первых рейсов переводим на официальный трудовой договор (ТК РФ) с полным соцпакетом.</p>
+                            </div>
                         </div>
                         <div class="benefit-item">
-                            <div class="benefit-content">
-                                <h3>5–9 РЕЙСОВ В МЕСЯЦ</h3>
-                                <p>Планируйте свое время, без простоев и перегруза.</p>
-                            </div>
                             <div class="benefit-icon">
                                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg>
+                            </div>
+                            <div class="benefit-content">
+                                <h3>5–9 рейсов в месяц</h3>
+                                <p>Планируйте свое время, без простоев и перегруза.</p>
                             </div>
                         </div>
                     </div>
@@ -710,11 +735,11 @@
         </section>
 
         <!-- Equipment -->
-        <section id="equipment" class="section">
+        <section id="equipment" class="section bg-primary">
             <div class="container">
-                <div class="equipment-inner reveal">
+                <div class="equipment-inner">
                     <div class="equipment-content">
-                        <h2 class="section-title">РАБОТАЙТЕ НА НАДЁЖНОЙ ТЕХНИКЕ</h2>
+                        <h2 class="section-title">Работайте на надёжной технике</h2>
                         <div class="section-text" style="margin-bottom: 8px;">
                             <p style="margin-bottom: 8px;">Тягачи DAF XF 105 с автоматической трансмиссией</p>
                             <p style="margin-bottom: 8px;">Полуприцепы Krone. Год выпуска автомобилей – 2013.</p>
@@ -732,17 +757,17 @@
                             <hr class="divider-dashed">
                         </div>
                     </div>
-                    <div class="equipment-visual" role="img" aria-label="Тягач DAF XF 105"></div>
+                    <div class="equipment-visual"></div>
                 </div>
             </div>
         </section>
 
         <!-- Routes -->
-        <section id="routes" class="section">
+        <section id="routes" class="section bg-secondary">
             <div class="container">
-                <div class="routes-inner reveal">
+                <div class="routes-inner">
                     <div class="routes-content">
-                        <h2 class="section-title">ГДЕ И ЧТО ВОЗИМ</h2>
+                        <h2 class="section-title">Где и что возим</h2>
                         <div class="section-text" style="margin-bottom: 8px;">
                             <p style="margin-bottom: 8px;">Основное направление: из Крыма по ЮФО.</p>
                             <p>Дальние рейсы: возможны направления до Урала.</p>
@@ -756,16 +781,16 @@
                         </div>
                         <p class="section-text" style="margin-top: 24px;">Разнообразие грузов означает разные ставки. Вы сможете выбирать то, что подходит именно вам.</p>
                     </div>
-                    <div class="routes-visual" role="img" aria-label="Типы грузов"></div>
+                    <div class="routes-visual"></div>
                 </div>
             </div>
         </section>
 
         <!-- Requirements -->
-        <section id="requirements" class="section">
+        <section id="requirements" class="section bg-primary">
             <div class="container">
-                <div class="reveal">
-                    <h2 class="section-title">КОГО МЫ ИЩЕМ</h2>
+                <div>
+                    <h2 class="section-title">Кого мы ищем</h2>
                     <div class="requirements-list">
                         <div class="req-item">
                             <span class="req-marker" aria-hidden="true"></span>
@@ -780,16 +805,16 @@
                             <p>Не важно, сколько вы за рулём — важно ваше желание работать и зарабатывать.</p>
                         </div>
                     </div>
-                    <a href="#contacts" class="btn-pill">ОСТАВИТЬ ЗАЯВКУ</a>
+                    <a href="#contacts" class="btn-pill">Оставить заявку</a>
                 </div>
             </div>
         </section>
 
         <!-- Contacts -->
-        <footer id="contacts" class="footer">
+        <footer id="contacts" class="footer bg-accent">
             <div class="container">
-                <div class="reveal">
-                    <h2 class="section-title">СВЯЖИТЕСЬ С НАМИ УДОБНЫМ СПОСОБОМ</h2>
+                <div>
+                    <h2 class="section-title">Свяжитесь с нами удобным способом</h2>
                     <div class="contacts-grid">
                         <div class="contact-card">
                             <p class="contact-label">Telegram</p>
@@ -805,9 +830,9 @@
                         </div>
                     </div>
                     <div class="footer-buttons">
-                        <a href="#" class="btn-pill">НАПИСАТЬ В TELEGRAM</a>
-                        <a href="#" class="btn-ghost">НАПИСАТЬ В MAX</a>
-                        <a href="#" class="btn-ghost">ПОЗВОНИТЬ СЕЙЧАС</a>
+                        <a href="#" class="btn-pill">Написать в Telegram</a>
+                        <a href="#" class="btn-ghost">Написать в Max</a>
+                        <a href="#" class="btn-ghost">Позвонить сейчас</a>
                     </div>
                     <p class="footer-note">Звоните или пишите прямо сейчас — ответим на все вопросы и поможем начать зарабатывать.</p>
                 </div>
@@ -817,26 +842,6 @@
 
     <script>
     (function() {
-        // Add reveal-hidden class only if JS is running
-        document.querySelectorAll('.reveal').forEach(function(el) {
-            el.classList.add('reveal-hidden');
-        });
-
-        // IntersectionObserver for scroll animations
-        var observer = new IntersectionObserver(function(entries) {
-            entries.forEach(function(entry) {
-                if (entry.isIntersecting) {
-                    entry.target.classList.remove('reveal-hidden');
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.reveal').forEach(function(el) {
-            observer.observe(el);
-        });
-
         // Smooth scroll for anchors
         document.querySelectorAll('a[href^="#"]').forEach(function(link) {
             link.addEventListener('click', function(e) {
