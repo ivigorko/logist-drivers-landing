@@ -1,904 +1,755 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Водитель СЕ — Работа на DAF XF 105</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --canvas: #faf9f5;
-      --surface-card: #efe9de;
-      --surface-dark: #181715;
-      --surface-dark-elevated: #252320;
-      --primary: #cc785c;
-      --primary-active: #a9583e;
-      --primary-disabled: #e6dfd8;
-      --ink: #141413;
-      --body: #3d3d3a;
-      --muted: #6c6a64;
-      --on-primary: #ffffff;
-      --on-dark: #faf9f5;
-      --on-dark-soft: #a09d96;
-      --hairline: #e6dfd8;
-    }
-
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-      -webkit-text-size-adjust: 100%;
-    }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      font-weight: 400;
-      font-size: 16px;
-      line-height: 1.55;
-      color: var(--body);
-      background-color: var(--canvas);
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      overflow-wrap: break-word;
-      word-wrap: break-word;
-    }
-
-    h1, h2, h3, h4, h5, h6 {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 500;
-      color: var(--ink);
-    }
-
-    .display-xl {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 500;
-      font-size: 32px;
-      line-height: 1.05;
-      letter-spacing: -1.5px;
-      color: var(--ink);
-    }
-
-    .display-lg {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 500;
-      font-size: 28px;
-      line-height: 1.1;
-      letter-spacing: -1px;
-      color: var(--ink);
-    }
-
-    .display-md {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 500;
-      font-size: 24px;
-      line-height: 1.15;
-      letter-spacing: -0.5px;
-      color: var(--ink);
-    }
-
-    .title-md {
-      font-family: 'Inter', sans-serif;
-      font-weight: 500;
-      font-size: 18px;
-      line-height: 1.4;
-      color: var(--ink);
-    }
-
-    .body-md {
-      font-family: 'Inter', sans-serif;
-      font-weight: 400;
-      font-size: 16px;
-      line-height: 1.55;
-      color: var(--body);
-    }
-
-    .body-sm {
-      font-family: 'Inter', sans-serif;
-      font-weight: 400;
-      font-size: 14px;
-      line-height: 1.55;
-      color: var(--body);
-    }
-
-    .caption {
-      font-family: 'Inter', sans-serif;
-      font-weight: 500;
-      font-size: 13px;
-      line-height: 1.4;
-      color: var(--muted);
-    }
-
-    .container {
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      font-family: 'Inter', sans-serif;
-      font-weight: 500;
-      font-size: 14px;
-      line-height: 1;
-      text-decoration: none;
-      border: none;
-      cursor: pointer;
-      height: 44px;
-      min-height: 44px;
-      padding: 12px 20px;
-      border-radius: 8px;
-      transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
-      touch-action: manipulation;
-    }
-
-    .btn:focus-visible {
-      outline: 2px solid var(--primary);
-      outline-offset: 2px;
-    }
-
-    .btn-primary {
-      background-color: var(--primary);
-      color: var(--on-primary);
-      border: 1px solid var(--primary);
-    }
-
-    .btn-primary:hover {
-      background-color: var(--primary-active);
-      border-color: var(--primary-active);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(204, 120, 92, 0.25);
-    }
-
-    .btn-secondary {
-      background-color: transparent;
-      color: var(--ink);
-      border: 1px solid var(--hairline);
-    }
-
-    .btn-secondary:hover {
-      border-color: var(--muted);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-    }
-
-    .btn-dark {
-      background-color: var(--surface-dark-elevated);
-      color: var(--on-dark);
-      border: 1px solid var(--surface-dark-elevated);
-    }
-
-    .btn-dark:hover {
-      background-color: var(--surface-dark);
-      border-color: var(--on-dark-soft);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
-    }
-
-    .btn-inverted {
-      background-color: var(--primary);
-      color: var(--on-primary);
-      border: 1px solid var(--primary);
-    }
-
-    .btn-inverted:hover {
-      background-color: var(--primary-active);
-      border-color: var(--primary-active);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(204, 120, 92, 0.35);
-    }
-
-    .section {
-      padding: 64px 0;
-    }
-
-    .grid {
-      display: grid;
-      gap: 24px;
-    }
-
-    .grid-2 {
-      grid-template-columns: 1fr;
-    }
-
-    .hero {
-      min-height: 100dvh;
-      display: flex;
-      align-items: center;
-      padding: 64px 0;
-    }
-
-    .hero-inner {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 48px;
-      align-items: center;
-    }
-
-    .hero-content {
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-      align-items: flex-start;
-      text-align: left;
-    }
-
-    .hero-subtitle {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 500;
-      font-size: 24px;
-      line-height: 1.15;
-      color: var(--primary);
-      letter-spacing: -0.5px;
-    }
-
-    .hero-text {
-      max-width: 520px;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 8px;
-    }
-
-    .hero-triggers {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
-      margin-top: 8px;
-    }
-
-    .trigger {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-family: 'Inter', sans-serif;
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--muted);
-    }
-
-    .trigger svg {
-      width: 20px;
-      height: 20px;
-      flex-shrink: 0;
-      color: var(--primary);
-    }
-
-    .hero-visual {
-      display: none;
-      border-radius: 12px;
-      overflow: hidden;
-    }
-
-    .hero-visual img {
-      width: 100%;
-      height: auto;
-      display: block;
-      object-fit: cover;
-    }
-
-    .card {
-      background-color: var(--surface-card);
-      border-radius: 12px;
-      padding: 32px;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
-    }
-
-    .card-value {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 500;
-      font-size: 28px;
-      line-height: 1.1;
-      letter-spacing: -0.5px;
-      color: var(--ink);
-      margin-bottom: 8px;
-    }
-
-    .card-label {
-      font-family: 'Inter', sans-serif;
-      font-weight: 400;
-      font-size: 14px;
-      line-height: 1.55;
-      color: var(--muted);
-    }
-
-    .conditions-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 16px;
-    }
-
-    .condition-card {
-      background-color: var(--surface-card);
-      border-radius: 12px;
-      padding: 32px;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .condition-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
-    }
-
-    .condition-card h3 {
-      font-family: 'Inter', sans-serif;
-      font-weight: 500;
-      font-size: 18px;
-      line-height: 1.4;
-      color: var(--ink);
-      margin-bottom: 8px;
-    }
-
-    .condition-card p {
-      font-family: 'Inter', sans-serif;
-      font-weight: 400;
-      font-size: 14px;
-      line-height: 1.55;
-      color: var(--body);
-    }
-
-    .tech-list {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 16px;
-      margin-top: 24px;
-    }
-
-    .tech-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      font-family: 'Inter', sans-serif;
-      font-weight: 400;
-      font-size: 16px;
-      line-height: 1.55;
-      color: var(--body);
-    }
-
-    .tech-item svg {
-      width: 20px;
-      height: 20px;
-      flex-shrink: 0;
-      color: var(--primary);
-      margin-top: 2px;
-    }
-
-    .chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 16px;
-    }
-
-    .chip {
-      display: inline-flex;
-      align-items: center;
-      height: 36px;
-      padding: 0 14px;
-      border-radius: 8px;
-      background-color: var(--surface-card);
-      font-family: 'Inter', sans-serif;
-      font-weight: 500;
-      font-size: 13px;
-      line-height: 1;
-      color: var(--ink);
-      border: 1px solid var(--hairline);
-    }
-
-    .cta-band {
-      background-color: var(--surface-dark);
-      color: var(--on-dark);
-      border-radius: 12px;
-      padding: 48px 24px;
-    }
-
-    .cta-band h2 {
-      color: var(--on-dark);
-      margin-bottom: 16px;
-    }
-
-    .cta-band ul {
-      list-style: none;
-      margin: 16px 0;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .cta-band li {
-      position: relative;
-      padding-left: 24px;
-      font-family: 'Inter', sans-serif;
-      font-weight: 400;
-      font-size: 16px;
-      line-height: 1.55;
-      color: var(--on-dark-soft);
-    }
-
-    .cta-band li::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 8px;
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background-color: var(--primary);
-    }
-
-    .cta-band .btn {
-      margin-top: 24px;
-    }
-
-    .footer {
-      background-color: var(--surface-dark);
-      color: var(--on-dark-soft);
-      padding: 64px 0 32px;
-    }
-
-    .footer h2 {
-      color: var(--on-dark);
-      margin-bottom: 24px;
-    }
-
-    .footer-contacts {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      margin-bottom: 24px;
-    }
-
-    .footer-contact {
-      font-family: 'Inter', sans-serif;
-      font-weight: 400;
-      font-size: 16px;
-      line-height: 1.55;
-      color: var(--on-dark-soft);
-    }
-
-    .footer-contact a {
-      color: var(--on-dark);
-      text-decoration: none;
-      border-bottom: 1px solid transparent;
-      transition: border-color 0.2s ease;
-    }
-
-    .footer-contact a:hover {
-      border-bottom-color: var(--on-dark-soft);
-    }
-
-    .footer-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 8px;
-      margin-bottom: 24px;
-    }
-
-    .footer-bottom {
-      margin-top: 48px;
-      padding-top: 24px;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      font-family: 'Inter', sans-serif;
-      font-weight: 400;
-      font-size: 13px;
-      line-height: 1.4;
-      color: var(--on-dark-soft);
-    }
-
-    .section-header {
-      margin-bottom: 32px;
-      max-width: 640px;
-    }
-
-    .section-header h2 {
-      margin-bottom: 12px;
-    }
-
-    @media (max-width: 480px) {
-      .display-xl {
-        font-size: 28px;
-        letter-spacing: -1px;
-      }
-
-      .display-lg {
-        font-size: 24px;
-        letter-spacing: -0.5px;
-      }
-
-      .display-md {
-        font-size: 22px;
-        letter-spacing: -0.3px;
-      }
-
-      .hero {
-        padding: 48px 0;
-        min-height: auto;
-      }
-
-      .hero-subtitle {
-        font-size: 20px;
-      }
-
-      .hero-actions {
-        flex-direction: column;
-        width: 100%;
-      }
-
-      .hero-actions .btn {
-        width: 100%;
-      }
-
-      .hero-triggers {
-        flex-direction: column;
-        gap: 12px;
-      }
-
-      .card {
-        padding: 24px;
-      }
-
-      .condition-card {
-        padding: 24px;
-      }
-
-      .cta-band {
-        padding: 32px 20px;
-      }
-
-      .footer-actions {
-        flex-direction: column;
-        width: 100%;
-      }
-
-      .footer-actions .btn {
-        width: 100%;
-      }
-
-      .section {
-        padding: 48px 0;
-      }
-    }
-
-    @media (min-width: 768px) {
-      .container {
-        padding: 0 32px;
-      }
-
-      .section {
-        padding: 96px 0;
-      }
-
-      .display-xl {
-        font-size: 48px;
-      }
-
-      .display-lg {
-        font-size: 36px;
-      }
-
-      .display-md {
-        font-size: 28px;
-      }
-
-      .hero {
-        padding: 96px 0;
-      }
-
-      .hero-inner {
-        grid-template-columns: 1fr 1fr;
-        gap: 64px;
-      }
-
-      .hero-visual {
-        display: block;
-      }
-
-      .grid-2 {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .conditions-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .tech-list {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .cta-band {
-        padding: 64px 48px;
-      }
-    }
-
-    @media (min-width: 1024px) {
-      .container {
-        padding: 0 48px;
-      }
-
-      .display-xl {
-        font-size: 64px;
-      }
-
-      .display-lg {
-        font-size: 48px;
-      }
-
-      .display-md {
-        font-size: 36px;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      html {
-        scroll-behavior: auto;
-      }
-      .btn, .card, .condition-card {
-        transition: none;
-      }
-      .btn:hover, .card:hover, .condition-card:hover {
-        transform: none;
-      }
-    }
-
-    a:focus-visible, button:focus-visible {
-      outline: 2px solid var(--primary);
-      outline-offset: 2px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Водитель категории СЕ — Работа на DAF XF 105</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-walnut-shadow: #100904;
+            --color-warm-cream: #ffedd7;
+            --color-bark-brown: #382416;
+            --color-cork-border: #40372e;
+            --color-driftwood: #6c5f51;
+            --color-ember-accent: #dc5000;
+            --color-pure-black: #000000;
+
+            --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+            --radius-pill: 36px;
+            --radius-ghost: 22.5px;
+            --radius-card: 12px;
+
+            --transition-reveal: opacity 0.6s ease, transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: var(--font-sans);
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 1.26;
+            color: var(--color-warm-cream);
+            background-color: var(--color-walnut-shadow);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        h1, h2, h3 {
+            margin: 0;
+            font-weight: 500;
+            text-transform: uppercase;
+            line-height: 0.9;
+        }
+
+        h1 { font-size: 32px; }
+        h2 { font-size: 28px; }
+        h3 { font-size: 20px; }
+
+        p { margin: 0; }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        ul, ol {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background-color: rgba(16, 9, 4, 0.85);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--color-cork-border);
+        }
+
+        .nav.scrolled {
+            background-color: rgba(16, 9, 4, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 24px;
+        }
+
+        .nav-logo {
+            font-weight: 500;
+            font-size: 14px;
+            text-transform: uppercase;
+            color: var(--color-warm-cream);
+            letter-spacing: 0.02em;
+        }
+
+        .nav-links {
+            display: none;
+            gap: 24px;
+        }
+
+        .nav-link {
+            font-size: 12px;
+            font-weight: 500;
+            text-transform: uppercase;
+            color: var(--color-warm-cream);
+            letter-spacing: 0.04em;
+            padding: 8px 0;
+            transition: opacity 0.2s ease;
+        }
+
+        .nav-link:hover {
+            opacity: 0.7;
+        }
+
+        .nav-open {
+            display: block;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .nav-open span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background-color: var(--color-warm-cream);
+            margin: 5px 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            gap: 0;
+            background-color: var(--color-walnut-shadow);
+            border-top: 1px solid var(--color-cork-border);
+            padding: 16px 24px;
+        }
+
+        .nav.open .mobile-menu {
+            display: flex;
+        }
+
+        .mobile-menu .nav-link {
+            padding: 12px 0;
+            font-size: 14px;
+            border-bottom: 1px dashed var(--color-cork-border);
+        }
+
+        .mobile-menu .nav-link:last-child {
+            border-bottom: none;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition-delay: calc(var(--index, 0) * 100ms);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+            transition: var(--transition-reveal);
+        }
+
+        .btn-pill {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--color-bark-brown);
+            color: var(--color-warm-cream);
+            border-radius: var(--radius-pill);
+            padding: 14px 24px;
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            min-height: 44px;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .btn-pill:hover {
+            background-color: #4a2f1c;
+            transform: translateY(-1px);
+        }
+
+        .btn-ghost {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: transparent;
+            color: var(--color-warm-cream);
+            border: 1px solid var(--color-warm-cream);
+            border-radius: var(--radius-ghost);
+            padding: 14px 24px;
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            min-height: 44px;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .btn-ghost:hover {
+            background-color: rgba(255, 237, 215, 0.08);
+            transform: translateY(-1px);
+        }
+
+        .section {
+            min-height: 100dvh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 80px 24px 48px;
+        }
+
+        .section-title {
+            margin-bottom: 32px;
+        }
+
+        .section-text {
+            color: var(--color-driftwood);
+            max-width: 640px;
+        }
+
+        .divider-dashed {
+            border: none;
+            height: 1px;
+            background: repeating-linear-gradient(
+                to right,
+                var(--color-cork-border) 0,
+                var(--color-cork-border) 6px,
+                transparent 6px,
+                transparent 12px
+            );
+            margin: 24px 0;
+        }
+
+        .card {
+            background-color: var(--color-bark-brown);
+            border-radius: var(--radius-card);
+            padding: 24px;
+        }
+
+        .hero {
+            min-height: 100dvh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 80px 24px 48px;
+            position: relative;
+        }
+
+        .hero-label {
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            color: var(--color-ember-accent);
+            letter-spacing: 0.06em;
+            margin-bottom: 16px;
+        }
+
+        .hero-title {
+            font-size: 32px;
+            max-width: 680px;
+            margin-bottom: 16px;
+        }
+
+        .hero-subtitle {
+            font-size: 20px;
+            font-weight: 500;
+            text-transform: uppercase;
+            color: var(--color-ember-accent);
+            line-height: 0.9;
+            margin-bottom: 16px;
+        }
+
+        .hero-text {
+            color: var(--color-driftwood);
+            max-width: 480px;
+            margin-bottom: 32px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+
+        .hero-triggers {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+        }
+
+        .trigger-item {
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            color: var(--color-driftwood);
+            letter-spacing: 0.02em;
+            position: relative;
+            padding-left: 16px;
+        }
+
+        .trigger-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 6px;
+            background-color: var(--color-ember-accent);
+            border-radius: 50%;
+        }
+
+        .conditions-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .condition-card .card-value {
+            font-size: 24px;
+            font-weight: 500;
+            text-transform: uppercase;
+            line-height: 0.9;
+            margin-bottom: 8px;
+        }
+
+        .condition-card .card-desc {
+            font-size: 14px;
+            color: var(--color-driftwood);
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+        }
+
+        .benefits-list {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        .benefit-item {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+            align-items: start;
+        }
+
+        .benefit-content h3 {
+            margin-bottom: 8px;
+        }
+
+        .benefit-content p {
+            color: var(--color-driftwood);
+        }
+
+        .benefit-icon {
+            width: 48px;
+            height: 48px;
+            background-color: var(--color-bark-brown);
+            border-radius: var(--radius-card);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .benefit-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--color-ember-accent);
+        }
+
+        .equipment-features {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            margin-top: 32px;
+        }
+
+        .equipment-feature {
+            padding: 16px 0;
+        }
+
+        .equipment-feature p {
+            color: var(--color-driftwood);
+        }
+
+        .routes-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .route-tag {
+            background-color: var(--color-bark-brown);
+            border-radius: var(--radius-card);
+            padding: 16px;
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            text-align: center;
+            letter-spacing: 0.02em;
+        }
+
+        .requirements-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .req-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .req-marker {
+            width: 6px;
+            height: 6px;
+            background-color: var(--color-ember-accent);
+            border-radius: 50%;
+            flex-shrink: 0;
+            margin-top: 8px;
+        }
+
+        .req-item p {
+            color: var(--color-driftwood);
+        }
+
+        .footer {
+            min-height: auto;
+            padding: 80px 24px 48px;
+        }
+
+        .contacts-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+            margin: 32px 0;
+        }
+
+        .contact-card {
+            background-color: var(--color-bark-brown);
+            border-radius: var(--radius-card);
+            padding: 24px;
+        }
+
+        .contact-label {
+            font-size: 12px;
+            font-weight: 500;
+            text-transform: uppercase;
+            color: var(--color-driftwood);
+            letter-spacing: 0.04em;
+            margin-bottom: 8px;
+        }
+
+        .contact-value {
+            font-size: 16px;
+            font-weight: 500;
+            text-transform: uppercase;
+            word-break: break-all;
+        }
+
+        .footer-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .footer-note {
+            color: var(--color-driftwood);
+            max-width: 520px;
+        }
+
+        @media (min-width: 768px) {
+            .nav-open { display: none; }
+            .nav-links { display: flex; }
+
+            h1 { font-size: 41px; }
+            h2 { font-size: 36px; }
+            .section { padding: 96px 48px 64px; }
+            .hero { padding: 96px 48px 64px; }
+            .hero-title { font-size: 41px; }
+            .conditions-grid { grid-template-columns: 2fr 1fr; }
+            .conditions-grid .condition-card:nth-child(3) { grid-column: span 2; }
+            .routes-grid { grid-template-columns: repeat(3, 1fr); }
+            .contacts-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        @media (min-width: 1024px) {
+            h1 { font-size: 51px; }
+            h2 { font-size: 41px; }
+            h3 { font-size: 24px; }
+            .hero-title { font-size: 51px; }
+            .conditions-grid { grid-template-columns: 2fr 1fr 1fr; }
+            .conditions-grid .condition-card:nth-child(3) { grid-column: span 1; }
+            .benefit-item { grid-template-columns: 1fr auto; gap: 48px; }
+            .benefit-item:nth-child(even) { grid-template-columns: auto 1fr; }
+            .benefit-item:nth-child(even) .benefit-content { order: 1; }
+            .benefit-item:nth-child(even) .benefit-icon { order: 2; }
+            .routes-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+    </style>
 </head>
 <body>
 
-  <section class="hero">
-    <div class="container hero-inner">
-      <div class="hero-content">
-        <h1 class="display-xl">Водитель с категорией СЕ, вы нам нужны на DAF XF 105 с автоматической КПП</h1>
-        <p class="hero-subtitle">200 000 – 300 000 ₽ в месяц + 1 000 ₽ суточные ежедневно</p>
-        <p class="body-md hero-text">Рейсы из Крыма по ЮФО. Все расходы на компанию. Суточные выплачиваем вперед.</p>
-        <div class="hero-actions">
-          <a href="#" class="btn btn-primary">Написать в Telegram</a>
-          <a href="#" class="btn btn-secondary">Написать в Max</a>
-          <a href="#" class="btn btn-secondary">Позвонить</a>
+    <header class="nav" role="banner">
+        <div class="nav-inner">
+            <a href="#hero" class="nav-logo">ЛОГИСТЫ</a>
+            <nav class="nav-links" role="navigation" aria-label="Главная навигация">
+                <a href="#conditions" class="nav-link">Условия</a>
+                <a href="#equipment" class="nav-link">Техника</a>
+                <a href="#routes" class="nav-link">Маршруты</a>
+                <a href="#contacts" class="nav-link">Контакты</a>
+            </nav>
+            <button class="nav-open" id="menu-toggle" aria-label="Открыть меню" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
-        <div class="hero-triggers">
-          <span class="trigger">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-            Суточные 1000 ₽/день
-          </span>
-          <span class="trigger">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            Все расходы оплачиваем
-          </span>
-          <span class="trigger">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-            Собственный сервис
-          </span>
+        <div class="mobile-menu">
+            <a href="#conditions" class="nav-link">Условия</a>
+            <a href="#equipment" class="nav-link">Техника</a>
+            <a href="#routes" class="nav-link">Маршруты</a>
+            <a href="#contacts" class="nav-link">Контакты</a>
         </div>
-      </div>
-      <div class="hero-visual">
-        <svg viewBox="0 0 520 260" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">
-          <!-- Ground line -->
-          <path d="M20 218 L500 218" stroke="#e6dfd8" stroke-width="2" stroke-linecap="round"/>
-          <!-- Trailer shadow -->
-          <ellipse cx="200" cy="222" rx="160" ry="4" fill="#e6dfd8" opacity="0.5"/>
-          <!-- Truck shadow -->
-          <ellipse cx="410" cy="222" rx="70" ry="4" fill="#e6dfd8" opacity="0.5"/>
+    </header>
 
-          <!-- Trailer body -->
-          <rect x="40" y="80" width="280" height="110" rx="6" fill="#efe9de" stroke="#e6dfd8" stroke-width="2"/>
-          <!-- Trailer top rail -->
-          <rect x="40" y="80" width="280" height="8" rx="3" fill="#e6dfd8" opacity="0.6"/>
-          <!-- Trailer bottom rail -->
-          <rect x="40" y="182" width="280" height="8" rx="3" fill="#e6dfd8" opacity="0.6"/>
-          <!-- Trailer side ribs -->
-          <rect x="60" y="100" width="4" height="70" rx="1" fill="#e6dfd8" opacity="0.5"/>
-          <rect x="100" y="100" width="4" height="70" rx="1" fill="#e6dfd8" opacity="0.5"/>
-          <rect x="140" y="100" width="4" height="70" rx="1" fill="#e6dfd8" opacity="0.5"/>
-          <rect x="180" y="100" width="4" height="70" rx="1" fill="#e6dfd8" opacity="0.5"/>
-          <rect x="220" y="100" width="4" height="70" rx="1" fill="#e6dfd8" opacity="0.5"/>
-          <rect x="260" y="100" width="4" height="70" rx="1" fill="#e6dfd8" opacity="0.5"/>
-          <rect x="300" y="100" width="4" height="70" rx="1" fill="#e6dfd8" opacity="0.5"/>
-          <!-- Trailer cargo curtain pattern -->
-          <rect x="40" y="130" width="280" height="2" fill="#cc785c" opacity="0.2"/>
-          <rect x="40" y="150" width="280" height="2" fill="#cc785c" opacity="0.2"/>
+    <main>
+        <section id="hero" class="hero">
+            <div class="reveal">
+                <p class="hero-label">Работа для водителей</p>
+                <h1 class="hero-title">ВОДИТЕЛЬ С КАТЕГОРИЕЙ СЕ, ВЫ НАМ НУЖНЫ</h1>
+                <p class="hero-subtitle">НА DAF XF 105 С АВТОМАТИЧЕСКОЙ КПП</p>
+                <p class="hero-text">200 000 – 300 000 ₽ В МЕСЯЦ + 1 000 ₽ СУТОЧНЫЕ ЕЖЕДНЕВНО</p>
+                <p class="hero-text">Рейсы из Крыма по ЮФО. Все расходы на компанию. Суточные выплачиваем вперед.</p>
+                <div class="hero-buttons">
+                    <a href="#contacts" class="btn-pill">НАПИСАТЬ В TELEGRAM</a>
+                    <a href="#contacts" class="btn-ghost">НАПИСАТЬ В MAX</a>
+                    <a href="#contacts" class="btn-ghost">ПОЗВОНИТЬ</a>
+                </div>
+                <div class="hero-triggers">
+                    <span class="trigger-item">Суточные 1000₽/день</span>
+                    <span class="trigger-item">Все расходы оплачиваем</span>
+                    <span class="trigger-item">Собственный сервис</span>
+                </div>
+            </div>
+        </section>
 
-          <!-- Truck cab -->
-          <path d="M340 190 L340 90 C340 82 346 76 354 76 L410 76 C418 76 424 82 424 90 L430 130 L460 145 C465 148 468 154 468 160 L468 190 C468 196 464 200 458 200 L350 200 C344 200 340 196 340 190Z" fill="#faf9f5" stroke="#e6dfd8" stroke-width="2"/>
-          <!-- Cab top air deflector -->
-          <path d="M350 76 L370 60 L420 60 L430 76Z" fill="#efe9de" stroke="#e6dfd8" stroke-width="2" stroke-linejoin="round"/>
-          <!-- Windshield -->
-          <path d="M425 82 L455 110 L455 130 L425 130Z" fill="#e6dfd8" opacity="0.4" stroke="#e6dfd8" stroke-width="1.5"/>
-          <!-- Side window -->
-          <path d="M385 85 L415 85 L420 120 L385 120Z" fill="#e6dfd8" opacity="0.3" stroke="#e6dfd8" stroke-width="1.5"/>
-          <!-- Door line -->
-          <path d="M382 85 L382 190" stroke="#e6dfd8" stroke-width="1.5"/>
-          <!-- Door handle -->
-          <rect x="388" y="130" width="14" height="4" rx="2" fill="#cc785c" opacity="0.5"/>
-          <!-- Headlight -->
-          <rect x="458" y="165" width="8" height="14" rx="3" fill="#cc785c" opacity="0.4"/>
-          <!-- Grill lines -->
-          <path d="M460 148 L468 148 M460 154 L468 154 M460 160 L468 160" stroke="#e6dfd8" stroke-width="1.5" stroke-linecap="round"/>
-          <!-- Side mirror -->
-          <rect x="420" y="100" width="6" height="18" rx="2" fill="#e6dfd8" opacity="0.6"/>
-          <rect x="424" y="102" width="10" height="14" rx="2" fill="#e6dfd8" opacity="0.4"/>
+        <section id="conditions" class="section">
+            <div class="reveal">
+                <h2 class="section-title">СКОЛЬКО ВЫ БУДЕТЕ ЗАРАБАТЫВАТЬ</h2>
+                <div class="conditions-grid">
+                    <div class="card condition-card">
+                        <p class="card-value">20 000 – 40 000 ₽</p>
+                        <p class="card-desc">за рейс 300–500 км</p>
+                    </div>
+                    <div class="card condition-card">
+                        <p class="card-value">40 000 – 80 000 ₽</p>
+                        <p class="card-desc">за рейс 700–1000 км</p>
+                    </div>
+                    <div class="card condition-card">
+                        <p class="card-value">200 000 – 300 000 ₽</p>
+                        <p class="card-desc">в месяц (при 5–9 рейсах)</p>
+                    </div>
+                </div>
+                <div class="card condition-card">
+                    <p class="card-value">+ 1 000 ₽/день</p>
+                    <p class="card-desc">суточные выплачиваем вперед</p>
+                </div>
+                <p class="section-text" style="margin-top: 24px;">Средняя ставка — 25 ₽/км. Оплата зависит от типа груза (зерновые, деловой металл, удобрения, сахар, мука), перевезенного тоннажа и километража.</p>
+            </div>
+        </section>
 
-          <!-- Fifth wheel / chassis connection -->
-          <rect x="330" y="188" width="20" height="6" rx="2" fill="#181715" opacity="0.15"/>
+        <section id="benefits" class="section">
+            <div class="reveal">
+                <h2 class="section-title">УСЛОВИЯ, О КОТОРЫХ НЕ НУЖНО ПЕРЕЖИВАТЬ</h2>
+                <div class="benefits-list">
+                    <div class="benefit-item">
+                        <div class="benefit-content">
+                            <h3>ВСЕ РАСХОДЫ НА НАС</h3>
+                            <p>Медосмотры, ГСМ, ремонты — компания оплачивает всё.</p>
+                        </div>
+                        <div class="benefit-icon">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-content">
+                            <h3>СТОЯНКИ ОПЛАЧИВАЕМ</h3>
+                            <p>Не тратите свои деньги на простой.</p>
+                        </div>
+                        <div class="benefit-icon">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-content">
+                            <h3>ГИБКОЕ И ЧЕСТНОЕ ОФОРМЛЕНИЕ</h3>
+                            <p>Начинаем работу по договору ГПХ. После успешного выполнения первых рейсов переводим на официальный трудовой договор (ТК РФ) с полным соцпакетом.</p>
+                        </div>
+                        <div class="benefit-icon">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-content">
+                            <h3>5–9 РЕЙСОВ В МЕСЯЦ</h3>
+                            <p>Планируйте свое время, без простоев и перегруза.</p>
+                        </div>
+                        <div class="benefit-icon">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-          <!-- Rear trailer wheels (tandem) -->
-          <circle cx="120" cy="200" r="20" fill="#181715" opacity="0.12"/>
-          <circle cx="120" cy="200" r="12" fill="#faf9f5" stroke="#e6dfd8" stroke-width="2"/>
-          <circle cx="120" cy="200" r="6" fill="#181715" opacity="0.15"/>
-          <circle cx="165" cy="200" r="20" fill="#181715" opacity="0.12"/>
-          <circle cx="165" cy="200" r="12" fill="#faf9f5" stroke="#e6dfd8" stroke-width="2"/>
-          <circle cx="165" cy="200" r="6" fill="#181715" opacity="0.15"/>
+        <section id="equipment" class="section">
+            <div class="reveal">
+                <h2 class="section-title">РАБОТАЙТЕ НА НАДЁЖНОЙ ТЕХНИКЕ</h2>
+                <div class="section-text" style="margin-bottom: 8px;">
+                    <p style="margin-bottom: 8px;">Тягачи DAF XF 105 с автоматической трансмиссией</p>
+                    <p style="margin-bottom: 8px;">Полуприцепы Krone. Год выпуска автомобилей – 2013.</p>
+                    <p>По истечении года работы возможна замена автомобиля на более новый.</p>
+                </div>
+                <div class="equipment-features">
+                    <hr class="divider-dashed">
+                    <div class="equipment-feature">
+                        <p>Автоматическая КПП — меньше усталости в рейсе.</p>
+                    </div>
+                    <hr class="divider-dashed">
+                    <div class="equipment-feature">
+                        <p>Собственное СТО компании — быстрый ремонт без очередей.</p>
+                    </div>
+                    <hr class="divider-dashed">
+                    <div class="equipment-feature">
+                        <p>Выезд штатного механика при крупноузловых поломках в рейсе.</p>
+                    </div>
+                    <hr class="divider-dashed">
+                    <div class="equipment-feature">
+                        <p>Мелкие поломки (например, прокол колеса) водитель устраняет самостоятельно с полной компенсацией компанией расходов на ремонт.</p>
+                    </div>
+                    <hr class="divider-dashed">
+                </div>
+            </div>
+        </section>
 
-          <!-- Truck rear wheels -->
-          <circle cx="375" cy="200" r="20" fill="#181715" opacity="0.12"/>
-          <circle cx="375" cy="200" r="12" fill="#faf9f5" stroke="#e6dfd8" stroke-width="2"/>
-          <circle cx="375" cy="200" r="6" fill="#181715" opacity="0.15"/>
+        <section id="routes" class="section">
+            <div class="reveal">
+                <h2 class="section-title">ГДЕ И ЧТО ВОЗИМ</h2>
+                <div class="section-text" style="margin-bottom: 8px;">
+                    <p style="margin-bottom: 8px;">Основное направление: из Крыма по ЮФО.</p>
+                    <p>Дальние рейсы: возможны направления до Урала.</p>
+                </div>
+                <div class="routes-grid">
+                    <div class="route-tag">Зерновые</div>
+                    <div class="route-tag">Деловой металл</div>
+                    <div class="route-tag">Удобрения</div>
+                    <div class="route-tag">Сахар</div>
+                    <div class="route-tag">Мука</div>
+                </div>
+                <p class="section-text" style="margin-top: 24px;">Разнообразие грузов означает разные ставки. Вы сможете выбирать то, что подходит именно вам.</p>
+            </div>
+        </section>
 
-          <!-- Truck front wheel -->
-          <circle cx="445" cy="200" r="18" fill="#181715" opacity="0.12"/>
-          <circle cx="445" cy="200" r="11" fill="#faf9f5" stroke="#e6dfd8" stroke-width="2"/>
-          <circle cx="445" cy="200" r="5" fill="#181715" opacity="0.15"/>
+        <section id="requirements" class="section">
+            <div class="reveal">
+                <h2 class="section-title">КОГО МЫ ИЩЕМ</h2>
+                <div class="requirements-list">
+                    <div class="req-item">
+                        <span class="req-marker" aria-hidden="true"></span>
+                        <p>Категория прав: СЕ</p>
+                    </div>
+                    <div class="req-item">
+                        <span class="req-marker" aria-hidden="true"></span>
+                        <p>Опыт: рассматриваем всех, кто готов работать.</p>
+                    </div>
+                    <div class="req-item">
+                        <span class="req-marker" aria-hidden="true"></span>
+                        <p>Не важно, сколько вы за рулём — важно ваше желание работать и зарабатывать.</p>
+                    </div>
+                </div>
+                <a href="#contacts" class="btn-pill">ОСТАВИТЬ ЗАЯВКУ</a>
+            </div>
+        </section>
 
-          <!-- Mudguards -->
-          <path d="M95 190 Q120 182 145 190" stroke="#e6dfd8" stroke-width="2" fill="none" stroke-linecap="round"/>
-          <path d="M350 190 Q375 182 400 190" stroke="#e6dfd8" stroke-width="2" fill="none" stroke-linecap="round"/>
-        </svg>
-      </div>
-    </div>
-  </section>
+        <footer id="contacts" class="footer">
+            <div class="reveal">
+                <h2 class="section-title">СВЯЖИТЕСЬ С НАМИ УДОБНЫМ СПОСОБОМ</h2>
+                <div class="contacts-grid">
+                    <div class="contact-card">
+                        <p class="contact-label">Telegram</p>
+                        <p class="contact-value">placeholder [ссылка]</p>
+                    </div>
+                    <div class="contact-card">
+                        <p class="contact-label">Max</p>
+                        <p class="contact-value">placeholder [ссылка]</p>
+                    </div>
+                    <div class="contact-card">
+                        <p class="contact-label">Телефон</p>
+                        <p class="contact-value">placeholder [номер]</p>
+                    </div>
+                </div>
+                <div class="footer-buttons">
+                    <a href="#" class="btn-pill">НАПИСАТЬ В TELEGRAM</a>
+                    <a href="#" class="btn-ghost">НАПИСАТЬ В MAX</a>
+                    <a href="#" class="btn-ghost">ПОЗВОНИТЬ СЕЙЧАС</a>
+                </div>
+                <p class="footer-note">Звоните или пишите прямо сейчас — ответим на все вопросы и поможем начать зарабатывать.</p>
+            </div>
+        </footer>
+    </main>
 
-  <section class="section">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="display-lg">Сколько вы будете зарабатывать</h2>
-      </div>
-      <div class="grid grid-2">
-        <div class="card">
-          <div class="card-value">20 000 – 40 000 ₽</div>
-          <div class="card-label">за рейс 300–500 км</div>
-        </div>
-        <div class="card">
-          <div class="card-value">40 000 – 80 000 ₽</div>
-          <div class="card-label">за рейс 700–1000 км</div>
-        </div>
-        <div class="card">
-          <div class="card-value">200 000 – 300 000 ₽</div>
-          <div class="card-label">в месяц (при 5–9 рейсах)</div>
-        </div>
-        <div class="card">
-          <div class="card-value">+ 1 000 ₽/день</div>
-          <div class="card-label">суточные выплачиваем вперед</div>
-        </div>
-      </div>
-      <p class="body-md" style="margin-top: 24px;">Средняя ставка — 25 ₽/км. Оплата зависит от типа груза (зерновые, деловой металл, удобрения, сахар, мука), перевезенного тоннажа и километража.</p>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="display-lg">Условия, о которых не нужно переживать</h2>
-      </div>
-      <div class="conditions-grid">
-        <div class="condition-card">
-          <h3>Все расходы на нас</h3>
-          <p>Медосмотры, ГСМ, ремонты — компания оплачивает всё.</p>
-        </div>
-        <div class="condition-card">
-          <h3>Стоянки оплачиваем</h3>
-          <p>Не тратите свои деньги на простой.</p>
-        </div>
-        <div class="condition-card">
-          <h3>Гибкое и честное оформление</h3>
-          <p>Начинаем работу по договору ГПХ. После успешного выполнения первых рейсов переводим на официальный трудовой договор (ТК РФ) с полным соцпакетом.</p>
-        </div>
-        <div class="condition-card">
-          <h3>5–9 рейсов в месяц</h3>
-          <p>Планируйте свое время, без простоев и перегруза.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="display-lg">Работайте на надежной технике</h2>
-        <p class="body-md" style="margin-top: 12px;">Тягачи DAF XF 105 с автоматической трансмиссией. Полуприцепы Krone. Год выпуска автомобилей — 2013. По истечении года работы возможна замена автомобиля на более новый.</p>
-      </div>
-      <div class="tech-list">
-        <div class="tech-item">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-          <span>Автоматическая КПП — меньше усталости в рейсе.</span>
-        </div>
-        <div class="tech-item">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-          <span>Собственное СТО компании — быстрый ремонт без очередей.</span>
-        </div>
-        <div class="tech-item">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          <span>Выезд штатного механика при крупноузловых поломках в рейсе.</span>
-        </div>
-        <div class="tech-item">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-          <span>Мелкие поломки (например, прокол колеса) водитель устраняет самостоятельно с полной компенсацией компанией расходов на ремонт.</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="display-lg">Где и что возим</h2>
-        <p class="body-md" style="margin-top: 12px;">Основное направление: из Крыма по ЮФО. Дальние рейсы: возможны направления до Урала.</p>
-      </div>
-      <div class="chips">
-        <span class="chip">Зерновые</span>
-        <span class="chip">Деловой металл</span>
-        <span class="chip">Удобрения</span>
-        <span class="chip">Сахар</span>
-        <span class="chip">Мука</span>
-      </div>
-      <p class="body-md" style="margin-top: 24px;">Разнообразие грузов означает разные ставки. Вы сможете выбирать то, что подходит именно вам.</p>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <div class="cta-band">
-        <h2 class="display-md">Кого мы ищем</h2>
-        <ul>
-          <li>Категория прав: СЕ</li>
-          <li>Опыт: рассматриваем всех, кто готов работать.</li>
-          <li>Не важно, сколько вы за рулем — важно ваше желание работать и зарабатывать.</li>
-        </ul>
-        <a href="#" class="btn btn-inverted">Написать в Telegram</a>
-      </div>
-    </div>
-  </section>
-
-  <footer class="footer">
-    <div class="container">
-      <h2 class="display-md">Свяжитесь с нами удобным способом</h2>
-      <div class="footer-contacts">
-        <div class="footer-contact">Telegram: <a href="#">[Telegram]</a></div>
-        <div class="footer-contact">Max: <a href="#">[Max]</a></div>
-        <div class="footer-contact">Телефон: <a href="#">[Телефон]</a></div>
-      </div>
-      <div class="footer-actions">
-        <a href="#" class="btn btn-inverted">Написать в Telegram</a>
-        <a href="#" class="btn btn-dark">Написать в Max</a>
-        <a href="#" class="btn btn-dark">Позвонить сейчас</a>
-      </div>
-      <p class="body-md" style="color: var(--on-dark-soft); margin-top: 8px;">Звоните или пишите прямо сейчас — ответим на все вопросы и поможем начать зарабатывать.</p>
-      <div class="footer-bottom">
-        © 2026 Логистическая компания. Все права защищены.
-      </div>
-    </div>
-  </footer>
-
+    <script src="animations.js" defer></script>
 </body>
 </html>
