@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script>document.documentElement.classList.add('js');</script>
     <title>Водитель категории СЕ — Работа на DAF XF 105</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,6 +27,8 @@
 
         html { scroll-behavior: smooth; }
 
+        * { box-sizing: border-box; }
+
         body {
             margin: 0;
             padding: 0;
@@ -39,6 +40,7 @@
             background-color: var(--color-walnut-shadow);
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
         }
 
         h1, h2, h3 { margin: 0; font-weight: 500; text-transform: uppercase; line-height: 0.9; }
@@ -51,6 +53,15 @@
         ul, ol { margin: 0; padding: 0; list-style: none; }
         img { max-width: 100%; height: auto; display: block; }
 
+        /* Container for centered layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            width: 100%;
+        }
+
+        /* Navigation */
         .nav {
             position: fixed;
             top: 0; left: 0; right: 0;
@@ -70,6 +81,8 @@
             align-items: center;
             justify-content: space-between;
             padding: 16px 24px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
         .nav-logo {
             font-weight: 500;
@@ -111,6 +124,8 @@
             background-color: var(--color-walnut-shadow);
             border-top: 1px solid var(--color-cork-border);
             padding: 16px 24px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
         .nav.open .mobile-menu { display: flex; }
         .mobile-menu .nav-link {
@@ -120,18 +135,27 @@
         }
         .mobile-menu .nav-link:last-child { border-bottom: none; }
 
-        .js .reveal {
-            opacity: 0;
-            transform: translateY(24px);
-            transition-delay: calc(var(--index, 0) * 100ms);
-        }
-        .reveal { opacity: 1; transform: translateY(0); }
-        .reveal.visible {
+        /* Reveal animations - visible by default, hidden when JS adds class */
+        .reveal {
             opacity: 1;
             transform: translateY(0);
             transition: var(--transition-reveal);
         }
+        .reveal.reveal-hidden {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Buttons */
         .btn-pill {
             display: inline-flex;
             align-items: center;
@@ -167,12 +191,13 @@
         }
         .btn-ghost:hover { background-color: rgba(255, 237, 215, 0.08); transform: translateY(-1px); }
 
+        /* Sections */
         .section {
             min-height: 100dvh;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: 80px 24px 48px;
+            padding: 80px 0 48px;
         }
         .section-title { margin-bottom: 32px; }
         .section-text { color: var(--color-driftwood); max-width: 640px; }
@@ -196,13 +221,40 @@
             padding: 24px;
         }
 
+        /* Hero - split screen on desktop */
         .hero {
             min-height: 100dvh;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: 80px 24px 48px;
+            padding: 80px 0 48px;
             position: relative;
+        }
+        .hero-inner {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            align-items: flex-start;
+        }
+        .hero-content {
+            flex: 1;
+        }
+        .hero-visual {
+            width: 100%;
+            min-height: 280px;
+            border-radius: var(--radius-card);
+            background: linear-gradient(135deg, var(--color-bark-brown) 0%, var(--color-walnut-shadow) 100%);
+            background-image: url('images/hero-truck.jpg');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-visual::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, var(--color-walnut-shadow) 0%, transparent 50%);
         }
         .hero-label {
             font-size: 14px;
@@ -230,6 +282,7 @@
             max-width: 480px;
             margin-bottom: 32px;
         }
+        .hero-text + .hero-text { margin-top: 8px; }
         .hero-buttons {
             display: flex;
             flex-wrap: wrap;
@@ -262,6 +315,7 @@
             border-radius: 50%;
         }
 
+        /* Conditions */
         .conditions-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -282,6 +336,7 @@
             letter-spacing: 0.02em;
         }
 
+        /* Benefits */
         .benefits-list {
             display: flex;
             flex-direction: column;
@@ -310,6 +365,29 @@
             fill: var(--color-ember-accent);
         }
 
+        /* Equipment */
+        .equipment-inner {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+        .equipment-visual {
+            width: 100%;
+            min-height: 280px;
+            border-radius: var(--radius-card);
+            background: linear-gradient(135deg, var(--color-bark-brown) 0%, var(--color-walnut-shadow) 100%);
+            background-image: url('images/equipment-truck.jpg');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .equipment-visual::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, var(--color-walnut-shadow) 0%, transparent 50%);
+        }
         .equipment-features {
             display: flex;
             flex-direction: column;
@@ -319,6 +397,29 @@
         .equipment-feature { padding: 16px 0; }
         .equipment-feature p { color: var(--color-driftwood); }
 
+        /* Routes */
+        .routes-inner {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+        .routes-visual {
+            width: 100%;
+            min-height: 280px;
+            border-radius: var(--radius-card);
+            background: linear-gradient(135deg, var(--color-bark-brown) 0%, var(--color-walnut-shadow) 100%);
+            background-image: url('images/cargo-types.jpg');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .routes-visual::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, var(--color-walnut-shadow) 0%, transparent 50%);
+        }
         .routes-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -336,6 +437,7 @@
             letter-spacing: 0.02em;
         }
 
+        /* Requirements */
         .requirements-list {
             display: flex;
             flex-direction: column;
@@ -357,9 +459,10 @@
         }
         .req-item p { color: var(--color-driftwood); }
 
+        /* Footer / Contacts */
         .footer {
             min-height: auto;
-            padding: 80px 24px 48px;
+            padding: 80px 0 48px;
         }
         .contacts-grid {
             display: grid;
@@ -397,33 +500,83 @@
             max-width: 520px;
         }
 
+        /* Tablet */
         @media (min-width: 768px) {
             .nav-open { display: none; }
             .nav-links { display: flex; }
 
             h1 { font-size: 41px; }
             h2 { font-size: 36px; }
-            .section { padding: 96px 48px 64px; }
-            .hero { padding: 96px 48px 64px; }
+
+            .section { padding: 96px 0 64px; }
+            .hero { padding: 96px 0 64px; }
             .hero-title { font-size: 41px; }
+            .hero-visual { min-height: 360px; }
+
             .conditions-grid { grid-template-columns: 2fr 1fr; }
             .conditions-grid .condition-card:nth-child(3) { grid-column: span 2; }
+
             .routes-grid { grid-template-columns: repeat(3, 1fr); }
+
             .contacts-grid { grid-template-columns: repeat(3, 1fr); }
+
+            .equipment-visual,
+            .routes-visual { min-height: 360px; }
         }
 
+        /* Desktop */
         @media (min-width: 1024px) {
             h1 { font-size: 51px; }
             h2 { font-size: 41px; }
             h3 { font-size: 24px; }
+
             .hero-title { font-size: 51px; }
+
+            .hero-inner {
+                flex-direction: row;
+                align-items: center;
+                gap: 64px;
+            }
+            .hero-content { flex: 1; }
+            .hero-visual {
+                flex: 1;
+                min-height: 480px;
+                max-height: 560px;
+            }
+
             .conditions-grid { grid-template-columns: 2fr 1fr 1fr; }
             .conditions-grid .condition-card:nth-child(3) { grid-column: span 1; }
+
             .benefit-item { grid-template-columns: 1fr auto; gap: 48px; }
             .benefit-item:nth-child(even) { grid-template-columns: auto 1fr; }
             .benefit-item:nth-child(even) .benefit-content { order: 1; }
             .benefit-item:nth-child(even) .benefit-icon { order: 2; }
-            .routes-grid { grid-template-columns: repeat(3, 1fr); }
+
+            .equipment-inner {
+                flex-direction: row;
+                align-items: center;
+                gap: 64px;
+            }
+            .equipment-content { flex: 1; }
+            .equipment-visual {
+                flex: 1;
+                min-height: 480px;
+                max-height: 560px;
+            }
+
+            .routes-inner {
+                flex-direction: row;
+                align-items: center;
+                gap: 64px;
+            }
+            .routes-content { flex: 1; }
+            .routes-visual {
+                flex: 1;
+                min-height: 480px;
+                max-height: 560px;
+                order: 2;
+            }
+            .routes-content { order: 1; }
         }
     </style>
 </head>
@@ -453,183 +606,268 @@
     </header>
 
     <main>
+        <!-- Hero -->
         <section id="hero" class="hero">
-            <div class="reveal">
-                <p class="hero-label">Работа для водителей</p>
-                <h1 class="hero-title">ВОДИТЕЛЬ С КАТЕГОРИЕЙ СЕ, ВЫ НАМ НУЖНЫ</h1>
-                <p class="hero-subtitle">НА DAF XF 105 С АВТОМАТИЧЕСКОЙ КПП</p>
-                <p class="hero-text">200 000 – 300 000 ₽ В МЕСЯЦ + 1 000 ₽ СУТОЧНЫЕ ЕЖЕДНЕВНО</p>
-                <p class="hero-text">Рейсы из Крыма по ЮФО. Все расходы на компанию. Суточные выплачиваем вперед.</p>
-                <div class="hero-buttons">
-                    <a href="#contacts" class="btn-pill">НАПИСАТЬ В TELEGRAM</a>
-                    <a href="#contacts" class="btn-ghost">НАПИСАТЬ В MAX</a>
-                    <a href="#contacts" class="btn-ghost">ПОЗВОНИТЬ</a>
-                </div>
-                <div class="hero-triggers">
-                    <span class="trigger-item">Суточные 1000₽/день</span>
-                    <span class="trigger-item">Все расходы оплачиваем</span>
-                    <span class="trigger-item">Собственный сервис</span>
+            <div class="container">
+                <div class="hero-inner reveal">
+                    <div class="hero-content">
+                        <p class="hero-label">Работа для водителей</p>
+                        <h1 class="hero-title">ВОДИТЕЛЬ С КАТЕГОРИЕЙ СЕ, ВЫ НАМ НУЖНЫ</h1>
+                        <p class="hero-subtitle">НА DAF XF 105 С АВТОМАТИЧЕСКОЙ КПП</p>
+                        <p class="hero-text">200 000 – 300 000 ₽ В МЕСЯЦ + 1 000 ₽ СУТОЧНЫЕ ЕЖЕДНЕВНО</p>
+                        <p class="hero-text">Рейсы из Крыма по ЮФО. Все расходы на компанию. Суточные выплачиваем вперед.</p>
+                        <div class="hero-buttons">
+                            <a href="#contacts" class="btn-pill">НАПИСАТЬ В TELEGRAM</a>
+                            <a href="#contacts" class="btn-ghost">НАПИСАТЬ В MAX</a>
+                            <a href="#contacts" class="btn-ghost">ПОЗВОНИТЬ</a>
+                        </div>
+                        <div class="hero-triggers">
+                            <span class="trigger-item">Суточные 1000₽/день</span>
+                            <span class="trigger-item">Все расходы оплачиваем</span>
+                            <span class="trigger-item">Собственный сервис</span>
+                        </div>
+                    </div>
+                    <div class="hero-visual" role="img" aria-label="Грузовик DAF XF 105"></div>
                 </div>
             </div>
         </section>
 
+        <!-- Conditions / Earnings -->
         <section id="conditions" class="section">
-            <div class="reveal">
-                <h2 class="section-title">СКОЛЬКО ВЫ БУДЕТЕ ЗАРАБАТЫВАТЬ</h2>
-                <div class="conditions-grid">
-                    <div class="card condition-card">
-                        <p class="card-value">20 000 – 40 000 ₽</p>
-                        <p class="card-desc">за рейс 300–500 км</p>
+            <div class="container">
+                <div class="reveal">
+                    <h2 class="section-title">СКОЛЬКО ВЫ БУДЕТЕ ЗАРАБАТЫВАТЬ</h2>
+                    <div class="conditions-grid">
+                        <div class="card condition-card">
+                            <p class="card-value">20 000 – 40 000 ₽</p>
+                            <p class="card-desc">за рейс 300–500 км</p>
+                        </div>
+                        <div class="card condition-card">
+                            <p class="card-value">40 000 – 80 000 ₽</p>
+                            <p class="card-desc">за рейс 700–1000 км</p>
+                        </div>
+                        <div class="card condition-card">
+                            <p class="card-value">200 000 – 300 000 ₽</p>
+                            <p class="card-desc">в месяц (при 5–9 рейсах)</p>
+                        </div>
                     </div>
                     <div class="card condition-card">
-                        <p class="card-value">40 000 – 80 000 ₽</p>
-                        <p class="card-desc">за рейс 700–1000 км</p>
+                        <p class="card-value">+ 1 000 ₽/день</p>
+                        <p class="card-desc">суточные выплачиваем вперед</p>
                     </div>
-                    <div class="card condition-card">
-                        <p class="card-value">200 000 – 300 000 ₽</p>
-                        <p class="card-desc">в месяц (при 5–9 рейсах)</p>
-                    </div>
+                    <p class="section-text" style="margin-top: 24px;">Средняя ставка — 25 ₽/км. Оплата зависит от типа груза (зерновые, деловой металл, удобрения, сахар, мука), перевезенного тоннажа и километража.</p>
                 </div>
-                <div class="card condition-card">
-                    <p class="card-value">+ 1 000 ₽/день</p>
-                    <p class="card-desc">суточные выплачиваем вперед</p>
-                </div>
-                <p class="section-text" style="margin-top: 24px;">Средняя ставка — 25 ₽/км. Оплата зависит от типа груза (зерновые, деловой металл, удобрения, сахар, мука), перевезенного тоннажа и километража.</p>
             </div>
         </section>
 
+        <!-- Benefits -->
         <section id="benefits" class="section">
-            <div class="reveal">
-                <h2 class="section-title">УСЛОВИЯ, О КОТОРЫХ НЕ НУЖНО ПЕРЕЖИВАТЬ</h2>
-                <div class="benefits-list">
-                    <div class="benefit-item">
-                        <div class="benefit-content">
-                            <h3>ВСЕ РАСХОДЫ НА НАС</h3>
-                            <p>Медосмотры, ГСМ, ремонты — компания оплачивает всё.</p>
+            <div class="container">
+                <div class="reveal">
+                    <h2 class="section-title">УСЛОВИЯ, О КОТОРЫХ НЕ НУЖНО ПЕРЕЖИВАТЬ</h2>
+                    <div class="benefits-list">
+                        <div class="benefit-item">
+                            <div class="benefit-content">
+                                <h3>ВСЕ РАСХОДЫ НА НАС</h3>
+                                <p>Медосмотры, ГСМ, ремонты — компания оплачивает всё.</p>
+                            </div>
+                            <div class="benefit-icon">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                            </div>
                         </div>
-                        <div class="benefit-icon">
-                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                        <div class="benefit-item">
+                            <div class="benefit-content">
+                                <h3>СТОЯНКИ ОПЛАЧИВАЕМ</h3>
+                                <p>Не тратите свои деньги на простой.</p>
+                            </div>
+                            <div class="benefit-icon">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M11.99 2C6.47 2 2 6.47 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                            </div>
                         </div>
-                    </div>
-                    <div class="benefit-item">
-                        <div class="benefit-content">
-                            <h3>СТОЯНКИ ОПЛАЧИВАЕМ</h3>
-                            <p>Не тратите свои деньги на простой.</p>
+                        <div class="benefit-item">
+                            <div class="benefit-content">
+                                <h3>ГИБКОЕ И ЧЕСТНОЕ ОФОРМЛЕНИЕ</h3>
+                                <p>Начинаем работу по договору ГПХ. После успешного выполнения первых рейсов переводим на официальный трудовой договор (ТК РФ) с полным соцпакетом.</p>
+                            </div>
+                            <div class="benefit-icon">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+                            </div>
                         </div>
-                        <div class="benefit-icon">
-                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
-                        </div>
-                    </div>
-                    <div class="benefit-item">
-                        <div class="benefit-content">
-                            <h3>ГИБКОЕ И ЧЕСТНОЕ ОФОРМЛЕНИЕ</h3>
-                            <p>Начинаем работу по договору ГПХ. После успешного выполнения первых рейсов переводим на официальный трудовой договор (ТК РФ) с полным соцпакетом.</p>
-                        </div>
-                        <div class="benefit-icon">
-                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
-                        </div>
-                    </div>
-                    <div class="benefit-item">
-                        <div class="benefit-content">
-                            <h3>5–9 РЕЙСОВ В МЕСЯЦ</h3>
-                            <p>Планируйте свое время, без простоев и перегруза.</p>
-                        </div>
-                        <div class="benefit-icon">
-                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg>
+                        <div class="benefit-item">
+                            <div class="benefit-content">
+                                <h3>5–9 РЕЙСОВ В МЕСЯЦ</h3>
+                                <p>Планируйте свое время, без простоев и перегруза.</p>
+                            </div>
+                            <div class="benefit-icon">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- Equipment -->
         <section id="equipment" class="section">
-            <div class="reveal">
-                <h2 class="section-title">РАБОТАЙТЕ НА НАДЁЖНОЙ ТЕХНИКЕ</h2>
-                <div class="section-text" style="margin-bottom: 8px;">
-                    <p style="margin-bottom: 8px;">Тягачи DAF XF 105 с автоматической трансмиссией</p>
-                    <p style="margin-bottom: 8px;">Полуприцепы Krone. Год выпуска автомобилей – 2013.</p>
-                    <p>По истечении года работы возможна замена автомобиля на более новый.</p>
-                </div>
-                <div class="equipment-features">
-                    <hr class="divider-dashed">
-                    <div class="equipment-feature"><p>Автоматическая КПП — меньше усталости в рейсе.</p></div>
-                    <hr class="divider-dashed">
-                    <div class="equipment-feature"><p>Собственное СТО компании — быстрый ремонт без очередей.</p></div>
-                    <hr class="divider-dashed">
-                    <div class="equipment-feature"><p>Выезд штатного механика при крупноузловых поломках в рейсе.</p></div>
-                    <hr class="divider-dashed">
-                    <div class="equipment-feature"><p>Мелкие поломки (например, прокол колеса) водитель устраняет самостоятельно с полной компенсацией компанией расходов на ремонт.</p></div>
-                    <hr class="divider-dashed">
+            <div class="container">
+                <div class="equipment-inner reveal">
+                    <div class="equipment-content">
+                        <h2 class="section-title">РАБОТАЙТЕ НА НАДЁЖНОЙ ТЕХНИКЕ</h2>
+                        <div class="section-text" style="margin-bottom: 8px;">
+                            <p style="margin-bottom: 8px;">Тягачи DAF XF 105 с автоматической трансмиссией</p>
+                            <p style="margin-bottom: 8px;">Полуприцепы Krone. Год выпуска автомобилей – 2013.</p>
+                            <p>По истечении года работы возможна замена автомобиля на более новый.</p>
+                        </div>
+                        <div class="equipment-features">
+                            <hr class="divider-dashed">
+                            <div class="equipment-feature"><p>Автоматическая КПП — меньше усталости в рейсе.</p></div>
+                            <hr class="divider-dashed">
+                            <div class="equipment-feature"><p>Собственное СТО компании — быстрый ремонт без очередей.</p></div>
+                            <hr class="divider-dashed">
+                            <div class="equipment-feature"><p>Выезд штатного механика при крупноузловых поломках в рейсе.</p></div>
+                            <hr class="divider-dashed">
+                            <div class="equipment-feature"><p>Мелкие поломки (например, прокол колеса) водитель устраняет самостоятельно с полной компенсацией компанией расходов на ремонт.</p></div>
+                            <hr class="divider-dashed">
+                        </div>
+                    </div>
+                    <div class="equipment-visual" role="img" aria-label="Тягач DAF XF 105"></div>
                 </div>
             </div>
         </section>
 
+        <!-- Routes -->
         <section id="routes" class="section">
-            <div class="reveal">
-                <h2 class="section-title">ГДЕ И ЧТО ВОЗИМ</h2>
-                <div class="section-text" style="margin-bottom: 8px;">
-                    <p style="margin-bottom: 8px;">Основное направление: из Крыма по ЮФО.</p>
-                    <p>Дальние рейсы: возможны направления до Урала.</p>
+            <div class="container">
+                <div class="routes-inner reveal">
+                    <div class="routes-content">
+                        <h2 class="section-title">ГДЕ И ЧТО ВОЗИМ</h2>
+                        <div class="section-text" style="margin-bottom: 8px;">
+                            <p style="margin-bottom: 8px;">Основное направление: из Крыма по ЮФО.</p>
+                            <p>Дальние рейсы: возможны направления до Урала.</p>
+                        </div>
+                        <div class="routes-grid">
+                            <div class="route-tag">Зерновые</div>
+                            <div class="route-tag">Деловой металл</div>
+                            <div class="route-tag">Удобрения</div>
+                            <div class="route-tag">Сахар</div>
+                            <div class="route-tag">Мука</div>
+                        </div>
+                        <p class="section-text" style="margin-top: 24px;">Разнообразие грузов означает разные ставки. Вы сможете выбирать то, что подходит именно вам.</p>
+                    </div>
+                    <div class="routes-visual" role="img" aria-label="Типы грузов"></div>
                 </div>
-                <div class="routes-grid">
-                    <div class="route-tag">Зерновые</div>
-                    <div class="route-tag">Деловой металл</div>
-                    <div class="route-tag">Удобрения</div>
-                    <div class="route-tag">Сахар</div>
-                    <div class="route-tag">Мука</div>
-                </div>
-                <p class="section-text" style="margin-top: 24px;">Разнообразие грузов означает разные ставки. Вы сможете выбирать то, что подходит именно вам.</p>
             </div>
         </section>
 
+        <!-- Requirements -->
         <section id="requirements" class="section">
-            <div class="reveal">
-                <h2 class="section-title">КОГО МЫ ИЩЕМ</h2>
-                <div class="requirements-list">
-                    <div class="req-item">
-                        <span class="req-marker" aria-hidden="true"></span>
-                        <p>Категория прав: СЕ</p>
+            <div class="container">
+                <div class="reveal">
+                    <h2 class="section-title">КОГО МЫ ИЩЕМ</h2>
+                    <div class="requirements-list">
+                        <div class="req-item">
+                            <span class="req-marker" aria-hidden="true"></span>
+                            <p>Категория прав: СЕ</p>
+                        </div>
+                        <div class="req-item">
+                            <span class="req-marker" aria-hidden="true"></span>
+                            <p>Опыт: рассматриваем всех, кто готов работать.</p>
+                        </div>
+                        <div class="req-item">
+                            <span class="req-marker" aria-hidden="true"></span>
+                            <p>Не важно, сколько вы за рулём — важно ваше желание работать и зарабатывать.</p>
+                        </div>
                     </div>
-                    <div class="req-item">
-                        <span class="req-marker" aria-hidden="true"></span>
-                        <p>Опыт: рассматриваем всех, кто готов работать.</p>
-                    </div>
-                    <div class="req-item">
-                        <span class="req-marker" aria-hidden="true"></span>
-                        <p>Не важно, сколько вы за рулём — важно ваше желание работать и зарабатывать.</p>
-                    </div>
+                    <a href="#contacts" class="btn-pill">ОСТАВИТЬ ЗАЯВКУ</a>
                 </div>
-                <a href="#contacts" class="btn-pill">ОСТАВИТЬ ЗАЯВКУ</a>
             </div>
         </section>
 
+        <!-- Contacts -->
         <footer id="contacts" class="footer">
-            <div class="reveal">
-                <h2 class="section-title">СВЯЖИТЕСЬ С НАМИ УДОБНЫМ СПОСОБОМ</h2>
-                <div class="contacts-grid">
-                    <div class="contact-card">
-                        <p class="contact-label">Telegram</p>
-                        <p class="contact-value">placeholder [ссылка]</p>
+            <div class="container">
+                <div class="reveal">
+                    <h2 class="section-title">СВЯЖИТЕСЬ С НАМИ УДОБНЫМ СПОСОБОМ</h2>
+                    <div class="contacts-grid">
+                        <div class="contact-card">
+                            <p class="contact-label">Telegram</p>
+                            <p class="contact-value">placeholder [ссылка]</p>
+                        </div>
+                        <div class="contact-card">
+                            <p class="contact-label">Max</p>
+                            <p class="contact-value">placeholder [ссылка]</p>
+                        </div>
+                        <div class="contact-card">
+                            <p class="contact-label">Телефон</p>
+                            <p class="contact-value">placeholder [номер]</p>
+                        </div>
                     </div>
-                    <div class="contact-card">
-                        <p class="contact-label">Max</p>
-                        <p class="contact-value">placeholder [ссылка]</p>
+                    <div class="footer-buttons">
+                        <a href="#" class="btn-pill">НАПИСАТЬ В TELEGRAM</a>
+                        <a href="#" class="btn-ghost">НАПИСАТЬ В MAX</a>
+                        <a href="#" class="btn-ghost">ПОЗВОНИТЬ СЕЙЧАС</a>
                     </div>
-                    <div class="contact-card">
-                        <p class="contact-label">Телефон</p>
-                        <p class="contact-value">placeholder [номер]</p>
-                    </div>
+                    <p class="footer-note">Звоните или пишите прямо сейчас — ответим на все вопросы и поможем начать зарабатывать.</p>
                 </div>
-                <div class="footer-buttons">
-                    <a href="#" class="btn-pill">НАПИСАТЬ В TELEGRAM</a>
-                    <a href="#" class="btn-ghost">НАПИСАТЬ В MAX</a>
-                    <a href="#" class="btn-ghost">ПОЗВОНИТЬ СЕЙЧАС</a>
-                </div>
-                <p class="footer-note">Звоните или пишите прямо сейчас — ответим на все вопросы и поможем начать зарабатывать.</p>
             </div>
         </footer>
     </main>
 
-    <script src="animations.js"></script>"animations.js" defer></script>
+    <script>
+    (function() {
+        // Добавляем класс для скрытия только если JS работает
+        document.querySelectorAll('.reveal').forEach(function(el) {
+            el.classList.add('reveal-hidden');
+        });
+
+        // IntersectionObserver для анимации при скролле
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.remove('reveal-hidden');
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        document.querySelectorAll('.reveal').forEach(function(el) {
+            observer.observe(el);
+        });
+
+        // Smooth scroll для якорей
+        document.querySelectorAll('a[href^="#"]').forEach(function(link) {
+            link.addEventListener('click', function(e) {
+                var href = link.getAttribute('href');
+                var target = document.querySelector(href);
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        var nav = document.querySelector('header.nav');
+        if (nav) {
+            var toggleNav = function() {
+                nav.classList.toggle('scrolled', window.scrollY > 50);
+            };
+            toggleNav();
+            window.addEventListener('scroll', toggleNav, { passive: true });
+        }
+
+        // Mobile menu toggle
+        var toggleBtn = document.getElementById('menu-toggle');
+        if (toggleBtn) {
+            toggleBtn.addEventListener('click', function() {
+                var header = document.querySelector('header.nav');
+                if (header) {
+                    header.classList.toggle('open');
+                }
+            });
+        }
+    })();
+    </script>
 </body>
 </html>
