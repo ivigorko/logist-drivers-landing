@@ -45,6 +45,8 @@
       background-color: var(--canvas);
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
     }
 
     h1, h2, h3, h4, h5, h6 {
@@ -511,6 +513,71 @@
       margin-bottom: 12px;
     }
 
+    @media (max-width: 480px) {
+      .display-xl {
+        font-size: 28px;
+        letter-spacing: -1px;
+      }
+
+      .display-lg {
+        font-size: 24px;
+        letter-spacing: -0.5px;
+      }
+
+      .display-md {
+        font-size: 22px;
+        letter-spacing: -0.3px;
+      }
+
+      .hero {
+        padding: 48px 0;
+        min-height: auto;
+      }
+
+      .hero-subtitle {
+        font-size: 20px;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .hero-actions .btn {
+        width: 100%;
+      }
+
+      .hero-triggers {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .card {
+        padding: 24px;
+      }
+
+      .condition-card {
+        padding: 24px;
+      }
+
+      .cta-band {
+        padding: 32px 20px;
+      }
+
+      .footer-actions {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .footer-actions .btn {
+        width: 100%;
+      }
+
+      .section {
+        padding: 48px 0;
+      }
+    }
+
     @media (min-width: 768px) {
       .container {
         padding: 0 32px;
@@ -627,7 +694,32 @@
         </div>
       </div>
       <div class="hero-visual">
-        <img src="https://picsum.photos/seed/truck/800/600" alt="Грузовик DAF XF 105">
+        <svg viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">
+          <rect x="40" y="80" width="280" height="90" rx="8" fill="#efe9de" stroke="#e6dfd8" stroke-width="2"/>
+          <rect x="40" y="170" width="280" height="30" rx="4" fill="#cc785c" opacity="0.15"/>
+          <rect x="40" y="170" width="280" height="30" rx="4" stroke="#cc785c" stroke-width="2" stroke-dasharray="8 4"/>
+          <rect x="40" y="140" width="280" height="6" fill="#cc785c" opacity="0.3"/>
+          <rect x="40" y="104" width="280" height="6" fill="#cc785c" opacity="0.3"/>
+          <rect x="50" y="90" width="8" height="70" rx="2" fill="#e6dfd8"/>
+          <rect x="302" y="90" width="8" height="70" rx="2" fill="#e6dfd8"/>
+          <rect x="60" y="200" width="50" height="40" rx="6" fill="#181715" opacity="0.08"/>
+          <rect x="250" y="200" width="50" height="40" rx="6" fill="#181715" opacity="0.08"/>
+          <circle cx="85" cy="220" r="18" fill="#181715" opacity="0.12"/>
+          <circle cx="85" cy="220" r="10" fill="#181715" opacity="0.2"/>
+          <circle cx="275" cy="220" r="18" fill="#181715" opacity="0.12"/>
+          <circle cx="275" cy="220" r="10" fill="#181715" opacity="0.2"/>
+          <rect x="330" y="100" width="50" height="70" rx="8" fill="#faf9f5" stroke="#e6dfd8" stroke-width="2"/>
+          <rect x="340" y="110" width="30" height="18" rx="3" fill="#e6dfd8"/>
+          <rect x="340" y="134" width="30" height="6" rx="2" fill="#e6dfd8"/>
+          <rect x="340" y="146" width="20" height="6" rx="2" fill="#e6dfd8"/>
+          <rect x="340" y="158" width="25" height="6" rx="2" fill="#cc785c" opacity="0.4"/>
+          <circle cx="355" cy="200" r="14" fill="#181715" opacity="0.1"/>
+          <circle cx="355" cy="200" r="8" fill="#181715" opacity="0.15"/>
+          <path d="M30 230 L370 230" stroke="#e6dfd8" stroke-width="2" stroke-linecap="round"/>
+          <path d="M50 240 L90 240 M120 240 L160 240 M190 240 L230 240 M260 240 L300 240 M330 240 L350 240" stroke="#e6dfd8" stroke-width="2" stroke-linecap="round"/>
+          <rect x="180" y="60" width="40" height="20" rx="4" fill="#cc785c" opacity="0.2"/>
+          <text x="200" y="74" font-family="Inter, sans-serif" font-size="10" font-weight="500" fill="#a9583e" text-anchor="middle">DAF XF 105</text>
+        </svg>
       </div>
     </div>
   </section>
