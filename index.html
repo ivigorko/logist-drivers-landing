@@ -694,31 +694,76 @@
         </div>
       </div>
       <div class="hero-visual">
-        <svg viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">
-          <rect x="40" y="80" width="280" height="90" rx="8" fill="#efe9de" stroke="#e6dfd8" stroke-width="2"/>
-          <rect x="40" y="170" width="280" height="30" rx="4" fill="#cc785c" opacity="0.15"/>
-          <rect x="40" y="170" width="280" height="30" rx="4" stroke="#cc785c" stroke-width="2" stroke-dasharray="8 4"/>
-          <rect x="40" y="140" width="280" height="6" fill="#cc785c" opacity="0.3"/>
-          <rect x="40" y="104" width="280" height="6" fill="#cc785c" opacity="0.3"/>
-          <rect x="50" y="90" width="8" height="70" rx="2" fill="#e6dfd8"/>
-          <rect x="302" y="90" width="8" height="70" rx="2" fill="#e6dfd8"/>
-          <rect x="60" y="200" width="50" height="40" rx="6" fill="#181715" opacity="0.08"/>
-          <rect x="250" y="200" width="50" height="40" rx="6" fill="#181715" opacity="0.08"/>
-          <circle cx="85" cy="220" r="18" fill="#181715" opacity="0.12"/>
-          <circle cx="85" cy="220" r="10" fill="#181715" opacity="0.2"/>
-          <circle cx="275" cy="220" r="18" fill="#181715" opacity="0.12"/>
-          <circle cx="275" cy="220" r="10" fill="#181715" opacity="0.2"/>
-          <rect x="330" y="100" width="50" height="70" rx="8" fill="#faf9f5" stroke="#e6dfd8" stroke-width="2"/>
-          <rect x="340" y="110" width="30" height="18" rx="3" fill="#e6dfd8"/>
-          <rect x="340" y="134" width="30" height="6" rx="2" fill="#e6dfd8"/>
-          <rect x="340" y="146" width="20" height="6" rx="2" fill="#e6dfd8"/>
-          <rect x="340" y="158" width="25" height="6" rx="2" fill="#cc785c" opacity="0.4"/>
-          <circle cx="355" cy="200" r="14" fill="#181715" opacity="0.1"/>
-          <circle cx="355" cy="200" r="8" fill="#181715" opacity="0.15"/>
-          <path d="M30 230 L370 230" stroke="#e6dfd8" stroke-width="2" stroke-linecap="round"/>
-          <path d="M50 240 L90 240 M120 240 L160 240 M190 240 L230 240 M260 240 L300 240 M330 240 L350 240" stroke="#e6dfd8" stroke-width="2" stroke-linecap="round"/>
-          <rect x="180" y="60" width="40" height="20" rx="4" fill="#cc785c" opacity="0.2"/>
-          <text x="200" y="74" font-family="Inter, sans-serif" font-size="10" font-weight="500" fill="#a9583e" text-anchor="middle">DAF XF 105</text>
+        <svg viewBox="0 0 520 260" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">
+          <!-- Ground line -->
+          <path d="M20 218 L500 218" stroke="#e6dfd8" stroke-width="2" stroke-linecap="round"/>
+          <!-- Trailer shadow -->
+          <ellipse cx="200" cy="222" rx="160" ry="4" fill="#e6dfd8" opacity="0.5"/>
+          <!-- Truck shadow -->
+          <ellipse cx="410" cy="222" rx="70" ry="4" fill="#e6dfd8" opacity="0.5"/>
+
+          <!-- Trailer body -->
+          <rect x="40" y="80" width="280" height="110" rx="6" fill="#efe9de" stroke="#e6dfd8" stroke-width="2"/>
+          <!-- Trailer top rail -->
+          <rect x="40" y="80" width="280" height="8" rx="3" fill="#e6dfd8" opacity="0.6"/>
+          <!-- Trailer bottom rail -->
+          <rect x="40" y="182" width="280" height="8" rx="3" fill="#e6dfd8" opacity="0.6"/>
+          <!-- Trailer side ribs -->
+          <rect x="60" y="100" width="4" height="70" rx="1" fill="#e6dfd8" opacity="0.5"/>
+          <rect x="100" y="100" width="4" height="70" rx="1" fill="#e6dfd8" opacity="0.5"/>
+          <rect x="140" y="100" width="4" height="70" rx="1" fill="#e6dfd8" opacity="0.5"/>
+          <rect x="180" y="100" width="4" height="70" rx="1" fill="#e6dfd8" opacity="0.5"/>
+          <rect x="220" y="100" width="4" height="70" rx="1" fill="#e6dfd8" opacity="0.5"/>
+          <rect x="260" y="100" width="4" height="70" rx="1" fill="#e6dfd8" opacity="0.5"/>
+          <rect x="300" y="100" width="4" height="70" rx="1" fill="#e6dfd8" opacity="0.5"/>
+          <!-- Trailer cargo curtain pattern -->
+          <rect x="40" y="130" width="280" height="2" fill="#cc785c" opacity="0.2"/>
+          <rect x="40" y="150" width="280" height="2" fill="#cc785c" opacity="0.2"/>
+
+          <!-- Truck cab -->
+          <path d="M340 190 L340 90 C340 82 346 76 354 76 L410 76 C418 76 424 82 424 90 L430 130 L460 145 C465 148 468 154 468 160 L468 190 C468 196 464 200 458 200 L350 200 C344 200 340 196 340 190Z" fill="#faf9f5" stroke="#e6dfd8" stroke-width="2"/>
+          <!-- Cab top air deflector -->
+          <path d="M350 76 L370 60 L420 60 L430 76Z" fill="#efe9de" stroke="#e6dfd8" stroke-width="2" stroke-linejoin="round"/>
+          <!-- Windshield -->
+          <path d="M425 82 L455 110 L455 130 L425 130Z" fill="#e6dfd8" opacity="0.4" stroke="#e6dfd8" stroke-width="1.5"/>
+          <!-- Side window -->
+          <path d="M385 85 L415 85 L420 120 L385 120Z" fill="#e6dfd8" opacity="0.3" stroke="#e6dfd8" stroke-width="1.5"/>
+          <!-- Door line -->
+          <path d="M382 85 L382 190" stroke="#e6dfd8" stroke-width="1.5"/>
+          <!-- Door handle -->
+          <rect x="388" y="130" width="14" height="4" rx="2" fill="#cc785c" opacity="0.5"/>
+          <!-- Headlight -->
+          <rect x="458" y="165" width="8" height="14" rx="3" fill="#cc785c" opacity="0.4"/>
+          <!-- Grill lines -->
+          <path d="M460 148 L468 148 M460 154 L468 154 M460 160 L468 160" stroke="#e6dfd8" stroke-width="1.5" stroke-linecap="round"/>
+          <!-- Side mirror -->
+          <rect x="420" y="100" width="6" height="18" rx="2" fill="#e6dfd8" opacity="0.6"/>
+          <rect x="424" y="102" width="10" height="14" rx="2" fill="#e6dfd8" opacity="0.4"/>
+
+          <!-- Fifth wheel / chassis connection -->
+          <rect x="330" y="188" width="20" height="6" rx="2" fill="#181715" opacity="0.15"/>
+
+          <!-- Rear trailer wheels (tandem) -->
+          <circle cx="120" cy="200" r="20" fill="#181715" opacity="0.12"/>
+          <circle cx="120" cy="200" r="12" fill="#faf9f5" stroke="#e6dfd8" stroke-width="2"/>
+          <circle cx="120" cy="200" r="6" fill="#181715" opacity="0.15"/>
+          <circle cx="165" cy="200" r="20" fill="#181715" opacity="0.12"/>
+          <circle cx="165" cy="200" r="12" fill="#faf9f5" stroke="#e6dfd8" stroke-width="2"/>
+          <circle cx="165" cy="200" r="6" fill="#181715" opacity="0.15"/>
+
+          <!-- Truck rear wheels -->
+          <circle cx="375" cy="200" r="20" fill="#181715" opacity="0.12"/>
+          <circle cx="375" cy="200" r="12" fill="#faf9f5" stroke="#e6dfd8" stroke-width="2"/>
+          <circle cx="375" cy="200" r="6" fill="#181715" opacity="0.15"/>
+
+          <!-- Truck front wheel -->
+          <circle cx="445" cy="200" r="18" fill="#181715" opacity="0.12"/>
+          <circle cx="445" cy="200" r="11" fill="#faf9f5" stroke="#e6dfd8" stroke-width="2"/>
+          <circle cx="445" cy="200" r="5" fill="#181715" opacity="0.15"/>
+
+          <!-- Mudguards -->
+          <path d="M95 190 Q120 182 145 190" stroke="#e6dfd8" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <path d="M350 190 Q375 182 400 190" stroke="#e6dfd8" stroke-width="2" fill="none" stroke-linecap="round"/>
         </svg>
       </div>
     </div>
