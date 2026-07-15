@@ -61,6 +61,39 @@
             width: 100%;
         }
 
+        /* Animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInRight {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .hero-label { animation: fadeInUp 0.5s ease both; }
+        .hero-title { animation: fadeInUp 0.5s ease 0.1s both; }
+        .hero-subtitle { animation: fadeInUp 0.5s ease 0.2s both; }
+        .hero-salary { animation: fadeInUp 0.5s ease 0.3s both; }
+        .hero-text { animation: fadeInUp 0.5s ease 0.4s both; }
+        .hero-buttons { animation: fadeInUp 0.5s ease 0.5s both; }
+        .hero-triggers { animation: fadeInUp 0.5s ease 0.6s both; }
+        .hero-visual { animation: fadeInRight 0.7s ease 0.3s both; }
+
+        .reveal {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .reveal.animate {
+            opacity: 0.85;
+            transform: translateY(16px);
+        }
+        .reveal.animate.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         /* Navigation */
         .nav {
             position: fixed;
@@ -222,15 +255,14 @@
             width: 100%;
             min-height: 280px;
             border-radius: var(--radius-card);
-            background: linear-gradient(135deg, #1a0e06 0%, #2a1810 40%, #1a0e06 100%);
-            position: relative;
             overflow: hidden;
         }
-        .hero-visual::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(ellipse at 30% 50%, rgba(220, 80, 0, 0.08) 0%, transparent 60%);
+        .hero-visual img {
+            width: 100%;
+            height: 100%;
+            min-height: 280px;
+            object-fit: cover;
+            display: block;
         }
         .hero-label {
             font-size: 12px;
@@ -401,15 +433,14 @@
             width: 100%;
             min-height: 280px;
             border-radius: var(--radius-card);
-            background: linear-gradient(135deg, #1a0e06 0%, #2a1810 40%, #1a0e06 100%);
-            position: relative;
             overflow: hidden;
         }
-        .equipment-visual::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(ellipse at 70% 50%, rgba(220, 80, 0, 0.08) 0%, transparent 60%);
+        .equipment-visual img {
+            width: 100%;
+            height: 100%;
+            min-height: 280px;
+            object-fit: cover;
+            display: block;
         }
         .equipment-features {
             display: flex;
@@ -436,15 +467,14 @@
             width: 100%;
             min-height: 280px;
             border-radius: var(--radius-card);
-            background: linear-gradient(135deg, #1a0e06 0%, #2a1810 40%, #1a0e06 100%);
-            position: relative;
             overflow: hidden;
         }
-        .routes-visual::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(ellipse at 50% 30%, rgba(220, 80, 0, 0.08) 0%, transparent 60%);
+        .routes-visual img {
+            width: 100%;
+            height: 100%;
+            min-height: 280px;
+            object-fit: cover;
+            display: block;
         }
         .routes-grid {
             display: flex;
@@ -547,6 +577,7 @@
             .hero-title { font-size: 48px; }
             .hero-salary { font-size: 26px; }
             .hero-visual { min-height: 360px; }
+            .hero-visual img { min-height: 360px; }
 
             .conditions-grid { grid-template-columns: repeat(3, 1fr); }
 
@@ -554,6 +585,8 @@
 
             .equipment-visual,
             .routes-visual { min-height: 360px; }
+            .equipment-visual img,
+            .routes-visual img { min-height: 360px; }
         }
 
         /* Desktop */
@@ -576,6 +609,7 @@
                 min-height: 440px;
                 max-height: 520px;
             }
+            .hero-visual img { min-height: 440px; }
 
             .benefit-item { gap: 24px; padding: 28px 0; }
 
@@ -590,6 +624,7 @@
                 min-height: 440px;
                 max-height: 520px;
             }
+            .equipment-visual img { min-height: 440px; }
 
             .routes-inner {
                 flex-direction: row;
@@ -603,6 +638,7 @@
                 max-height: 520px;
                 order: 2;
             }
+            .routes-visual img { min-height: 440px; }
             .routes-content { order: 1; }
         }
     </style>
@@ -654,13 +690,15 @@
                             <span class="trigger-item">Собственный сервис</span>
                         </div>
                     </div>
-                    <div class="hero-visual"></div>
+                    <div class="hero-visual">
+                        <img src="images/hero-truck.png" alt="DAF XF 105 — тягач для международных рейсов" loading="eager">
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- Conditions / Earnings -->
-        <section id="conditions" class="section bg-accent">
+        <section id="conditions" class="section bg-accent reveal">
             <div class="container">
                 <div>
                     <h2 class="section-title">Сколько вы будете зарабатывать</h2>
@@ -688,7 +726,7 @@
         </section>
 
         <!-- Benefits -->
-        <section id="benefits" class="section bg-secondary">
+        <section id="benefits" class="section bg-secondary reveal">
             <div class="container">
                 <div>
                     <h2 class="section-title">Условия, о которых не нужно переживать</h2>
@@ -735,7 +773,7 @@
         </section>
 
         <!-- Equipment -->
-        <section id="equipment" class="section bg-primary">
+        <section id="equipment" class="section bg-primary reveal">
             <div class="container">
                 <div class="equipment-inner">
                     <div class="equipment-content">
@@ -757,13 +795,15 @@
                             <hr class="divider-dashed">
                         </div>
                     </div>
-                    <div class="equipment-visual"></div>
+                    <div class="equipment-visual">
+                        <img src="images/equipment-truck.png" alt="DAF XF 105 с полуприцепом Krone" loading="lazy">
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- Routes -->
-        <section id="routes" class="section bg-secondary">
+        <section id="routes" class="section bg-secondary reveal">
             <div class="container">
                 <div class="routes-inner">
                     <div class="routes-content">
@@ -781,13 +821,15 @@
                         </div>
                         <p class="section-text" style="margin-top: 24px;">Разнообразие грузов означает разные ставки. Вы сможете выбирать то, что подходит именно вам.</p>
                     </div>
-                    <div class="routes-visual"></div>
+                    <div class="routes-visual">
+                        <img src="images/cargo-types.png" alt="Типы грузов на складе" loading="lazy">
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- Requirements -->
-        <section id="requirements" class="section bg-primary">
+        <section id="requirements" class="section bg-primary reveal">
             <div class="container">
                 <div>
                     <h2 class="section-title">Кого мы ищем</h2>
@@ -811,7 +853,7 @@
         </section>
 
         <!-- Contacts -->
-        <footer id="contacts" class="footer bg-accent">
+        <footer id="contacts" class="footer bg-accent reveal">
             <div class="container">
                 <div>
                     <h2 class="section-title">Свяжитесь с нами удобным способом</h2>
@@ -873,6 +915,23 @@
                     header.classList.toggle('open');
                 }
             });
+        }
+
+        // Scroll reveal animation (only if user prefers motion)
+        if (window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
+            var revealEls = document.querySelectorAll('.reveal');
+            if (revealEls.length > 0) {
+                revealEls.forEach(function(el) { el.classList.add('animate'); });
+                var observer = new IntersectionObserver(function(entries) {
+                    entries.forEach(function(entry) {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+                revealEls.forEach(function(el) { observer.observe(el); });
+            }
         }
     })();
     </script>
