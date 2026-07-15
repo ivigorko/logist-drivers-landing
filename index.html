@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>document.documentElement.classList.add('js');</script>
+    <title>Водитель категории СЕ — Работа на DAF XF 105</title>"viewport" content="width=device-width, initial-scale=1.0">
     <title>Водитель категории СЕ — Работа на DAF XF 105</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -172,7 +174,18 @@
             border-bottom: none;
         }
 
+        .js .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition-delay: calc(var(--index, 0) * 100ms);
+        }
+
         .reveal {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal.visible {
             opacity: 0;
             transform: translateY(24px);
             transition-delay: calc(var(--index, 0) * 100ms);
