@@ -2,14 +2,10 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  // ─── 1. Плавный скролл к секциям ───
-  const navLinks = document.querySelectorAll('a[href^="#"]');
-
-  navLinks.forEach(link => {
+  // 1. Плавный скролл к секциям
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
     link.addEventListener('click', (e) => {
-      const targetId = link.getAttribute('href');
-      const target = document.querySelector(targetId);
-
+      const target = document.querySelector(link.getAttribute('href'));
       if (target) {
         e.preventDefault();
         target.scrollIntoView({ behavior: 'smooth' });
@@ -17,16 +13,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // ─── 2. Анимации при появлении в viewport ───
+  // 2. Анимации при появлении в viewport
   const revealElements = document.querySelectorAll('.reveal');
-
   if (revealElements.length > 0) {
-    // Расставляем задержку для stagger-эффекта внутри секций
-    const sections = document.querySelectorAll('section');
-
-    sections.forEach(section => {
-      const reveals = section.querySelectorAll('.reveal');
-      reveals.forEach((el, index) => {
+    document.querySelectorAll('section').forEach(section => {
+      section.querySelectorAll('.reveal').forEach((el, index) => {
         el.style.setProperty('--index', String(index));
       });
     });
@@ -43,37 +34,26 @@ document.addEventListener('DOMContentLoaded', () => {
     revealElements.forEach(el => observer.observe(el));
   }
 
-  // ─── 3. Фон навбара при скролле ───
-  const nav = document.querySelector('header.nav');
-  const nav = document.querySelector('nav');
-
-  if (nav) {
-    const toggleNavBackground = () => {
-      if (window.scrollY > 50) {
-        nav.classList.add('scrolled');
-      } else {
-        nav.classList.remove('scrolled');
-      }
+  // 3. Фон навбара при скролле
+  const headerNav = document.querySelector('header.nav');
+  if (headerNav) {
+    const toggleNav = () => {
+      headerNav.classList.toggle('scrolled', window.scrollY > 50);
     };
-
-    toggleNavBackground();
-    window.addEventListener('scroll', toggleNavBackground, { passive: true });
+    toggleNav();
+    window.addEventListener('scroll', toggleNav, { passive: true });
   }
 
-  // ─── 4. Мобильное меню ───
+  // 4. Мобильное меню
   const menuToggle = document.getElementById('menu-toggle');
   const mobileMenu = document.querySelector('.mobile-menu');
-
   if (menuToggle && mobileMenu) {
     menuToggle.addEventListener('click', () => {
-      nav?.classList.toggle('open');
+      headerNav?.classList.toggle('open');
     });
-
-    const mobileLinks = mobileMenu.querySelectorAll('a[href^="#"]');
-
-    mobileLinks.forEach(link => {
+    mobileMenu.querySelectorAll('a[href^="#"]').forEach(link => {
       link.addEventListener('click', () => {
-        nav?.classList.remove('open');
+        headerNav?.classList.remove('open');
       });
     });
   }
