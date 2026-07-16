@@ -3,861 +3,329 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Водитель СЕ — Работа на DAF XF 105</title>
+  <title>Водитель категории CE — 200 000–300 000 ₽/мес · Рейсы из Крыма по ЮФО</title>
+  <meta name="description" content="Набор водителей категории CE на DAF XF 105 с автоматической КПП. 200 000–300 000 ₽ в месяц + 1 000 ₽ суточные ежедневно. Рейсы из Крыма по ЮФО. Все расходы на компанию.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --walnut: #100904;
-      --walnut-light: #1a120a;
-      --bark: #382416;
-      --cork: #40372e;
-      --driftwood: #6c5f51;
-      --cream: #ffedd7;
-      --cream-dim: #d4c4b0;
-      --ember: #dc5000;
-      --ember-glow: #ff6a1a;
-    }
-
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
-      font-weight: 400;
-      font-size: 16px;
-      line-height: 1.55;
-      color: var(--cream-dim);
-      background-color: var(--walnut);
-      -webkit-font-smoothing: antialiased;
-    }
-
-    /* ---- ANIMATIONS ---- */
-    .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.5s ease, transform 0.5s ease;
-    }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .reveal-delay-1 { transition-delay: 0.08s; }
-    .reveal-delay-2 { transition-delay: 0.16s; }
-    .reveal-delay-3 { transition-delay: 0.24s; }
-    .reveal-delay-4 { transition-delay: 0.32s; }
-
-    /* ---- HERO ---- */
-    .hero {
-      position: relative;
-      min-height: 100vh;
-      min-height: 100dvh;
-      display: flex;
-      align-items: flex-end;
-      overflow: hidden;
-    }
-
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-    }
-
-    .hero-bg img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center 60%;
-      filter: brightness(0.65) saturate(0.8);
-    }
-
-    .hero-gradient {
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-      background: linear-gradient(
-        to top,
-        rgba(16, 9, 4, 1) 0%,
-        rgba(16, 9, 4, 0.85) 25%,
-        rgba(16, 9, 4, 0.4) 55%,
-        rgba(16, 9, 4, 0.2) 75%,
-        rgba(16, 9, 4, 0.5) 100%
-      );
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 120px 24px 64px;
-    }
-
-    .hero-tag {
-      display: inline-block;
-      font-weight: 500;
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      color: var(--ember);
-      margin-bottom: 16px;
-    }
-
-    .hero h1 {
-      font-weight: 600;
-      font-size: clamp(32px, 5.5vw, 64px);
-      line-height: 0.95;
-      text-transform: uppercase;
-      color: var(--cream);
-      max-width: 900px;
-      margin-bottom: 20px;
-    }
-
-    .hero-salary {
-      font-weight: 700;
-      font-size: clamp(28px, 4vw, 52px);
-      line-height: 1;
-      color: var(--ember);
-      margin-bottom: 12px;
-    }
-
-    .hero-note {
-      font-weight: 400;
-      font-size: 16px;
-      line-height: 1.5;
-      color: var(--cream-dim);
-      max-width: 520px;
-      margin-bottom: 32px;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-bottom: 32px;
-    }
-
-    .hero-triggers {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px 28px;
-    }
-
-    .trigger {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--cream-dim);
-    }
-
-    .trigger svg {
-      width: 18px;
-      height: 18px;
-      flex-shrink: 0;
-      color: var(--ember);
-    }
-
-    /* ---- BUTTONS ---- */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      font-family: inherit;
-      font-weight: 600;
-      font-size: 14px;
-      text-decoration: none;
-      border: none;
-      cursor: pointer;
-      height: 48px;
-      padding: 0 28px;
-      border-radius: 36px;
-      transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
-      white-space: nowrap;
-    }
-
-    .btn-primary {
-      background-color: var(--ember);
-      color: #fff;
-    }
-    .btn-primary:hover {
-      background-color: var(--ember-glow);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(220, 80, 0, 0.35);
-    }
-
-    .btn-ghost {
-      background-color: transparent;
-      color: var(--cream);
-      border: 1px solid var(--cork);
-    }
-    .btn-ghost:hover {
-      border-color: var(--cream-dim);
-      background-color: rgba(255, 237, 215, 0.05);
-      transform: translateY(-2px);
-    }
-
-    /* ---- SECTIONS ---- */
-    .section {
-      padding: 80px 0;
-    }
-
-    .section-alt {
-      background-color: var(--walnut-light);
-    }
-
-    .section-accent {
-      background-color: var(--bark);
-    }
-
-    .container {
-      width: 100%;
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-
-    .section-header {
-      margin-bottom: 40px;
-    }
-
-    .section-label {
-      font-weight: 500;
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      color: var(--ember);
-      margin-bottom: 12px;
-    }
-
-    h2 {
-      font-weight: 600;
-      font-size: clamp(26px, 3.5vw, 40px);
-      line-height: 1.05;
-      color: var(--cream);
-      text-transform: uppercase;
-      margin-bottom: 12px;
-    }
-
-    .section-sub {
-      font-size: 16px;
-      line-height: 1.55;
-      color: var(--driftwood);
-      max-width: 640px;
-    }
-
-    /* ---- DIVIDER ---- */
-    .divider {
-      border: none;
-      height: 1px;
-      background: repeating-linear-gradient(
-        to right,
-        var(--cork) 0,
-        var(--cork) 6px,
-        transparent 6px,
-        transparent 12px
-      );
-      margin: 0 auto;
-      max-width: 1100px;
-      opacity: 0.5;
-    }
-
-    /* ---- EARNINGS ---- */
-    .earnings-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 16px;
-    }
-
-    .earn-card {
-      background-color: rgba(56, 36, 22, 0.5);
-      border: 1px solid var(--cork);
-      border-radius: 12px;
-      padding: 28px;
-      transition: transform 0.2s ease, border-color 0.2s ease;
-    }
-    .earn-card:hover {
-      transform: translateY(-3px);
-      border-color: var(--driftwood);
-    }
-
-    .earn-card.hero-card {
-      background-color: var(--bark);
-      border-color: var(--driftwood);
-    }
-
-    .earn-value {
-      font-weight: 700;
-      font-size: clamp(24px, 3vw, 36px);
-      line-height: 1.1;
-      color: var(--ember);
-      margin-bottom: 6px;
-    }
-    .earn-card.hero-card .earn-value {
-      color: var(--cream);
-      font-size: clamp(28px, 3.5vw, 44px);
-    }
-
-    .earn-label {
-      font-size: 14px;
-      color: var(--driftwood);
-      line-height: 1.4;
-    }
-    .earn-card.hero-card .earn-label {
-      color: var(--cream-dim);
-    }
-
-    .earn-note {
-      margin-top: 24px;
-      font-size: 15px;
-      color: var(--driftwood);
-      line-height: 1.55;
-    }
-
-    /* ---- CONDITIONS ---- */
-    .conditions-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 16px;
-    }
-
-    .condition-card {
-      background-color: rgba(56, 36, 22, 0.3);
-      border: 1px solid var(--cork);
-      border-radius: 12px;
-      padding: 28px;
-      transition: transform 0.2s ease, border-color 0.2s ease;
-    }
-    .condition-card:hover {
-      transform: translateY(-3px);
-      border-color: var(--driftwood);
-    }
-
-    .condition-icon {
-      width: 40px;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 16px;
-    }
-    .condition-icon svg {
-      width: 28px;
-      height: 28px;
-      color: var(--ember);
-    }
-
-    .condition-card h3 {
-      font-weight: 600;
-      font-size: 16px;
-      color: var(--cream);
-      margin-bottom: 6px;
-      text-transform: uppercase;
-      letter-spacing: 0.03em;
-    }
-
-    .condition-card p {
-      font-size: 14px;
-      line-height: 1.5;
-      color: var(--driftwood);
-    }
-
-    /* ---- TECH ---- */
-    .tech-visual {
-      margin-top: 32px;
-      border-radius: 12px;
-      overflow: hidden;
-      border: 1px solid var(--cork);
-    }
-    .tech-visual img {
-      width: 100%;
-      height: auto;
-      display: block;
-      filter: brightness(0.85) saturate(0.9);
-    }
-
-    .tech-list {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 16px;
-      margin-top: 32px;
-    }
-
-    .tech-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      font-size: 15px;
-      line-height: 1.5;
-      color: var(--cream-dim);
-    }
-
-    .tech-item svg {
-      width: 20px;
-      height: 20px;
-      flex-shrink: 0;
-      color: var(--ember);
-      margin-top: 2px;
-    }
-
-    /* ---- CHIPS ---- */
-    .chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 20px;
-    }
-
-    .chip {
-      display: inline-flex;
-      align-items: center;
-      height: 38px;
-      padding: 0 16px;
-      border-radius: 999px;
-      background-color: rgba(56, 36, 22, 0.5);
-      border: 1px solid var(--cork);
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--cream);
-    }
-
-    /* ---- CTA BAND ---- */
-    .cta-band {
-      background-color: var(--bark);
-      border-radius: 12px;
-      padding: 48px 28px;
-      text-align: center;
-    }
-
-    .cta-band h2 {
-      margin-bottom: 24px;
-    }
-
-    .cta-band ul {
-      list-style: none;
-      margin: 0 0 28px;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .cta-band li {
-      position: relative;
-      padding-left: 24px;
-      font-size: 15px;
-      line-height: 1.5;
-      color: var(--cream-dim);
-      text-align: left;
-      max-width: 480px;
-      margin: 0 auto;
-    }
-
-    .cta-band li::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 8px;
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background-color: var(--ember);
-    }
-
-    /* ---- FOOTER ---- */
-    .footer {
-      padding: 64px 0 32px;
-      border-top: 1px dashed var(--cork);
-    }
-
-    .footer h2 {
-      margin-bottom: 24px;
-    }
-
-    .footer-contacts {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      margin-bottom: 28px;
-    }
-
-    .footer-contact {
-      font-size: 15px;
-      color: var(--driftwood);
-    }
-
-    .footer-contact a {
-      color: var(--cream);
-      text-decoration: none;
-      border-bottom: 1px solid var(--cork);
-      transition: border-color 0.2s ease;
-    }
-    .footer-contact a:hover {
-      border-color: var(--cream-dim);
-    }
-
-    .footer-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-bottom: 16px;
-    }
-
-    .footer-bottom {
-      margin-top: 48px;
-      padding-top: 24px;
-      border-top: 1px solid var(--cork);
-      font-size: 13px;
-      color: var(--driftwood);
-    }
-
-    /* ---- NAV ---- */
-    .nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      padding: 16px 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: linear-gradient(to bottom, rgba(16,9,4,0.8) 0%, rgba(16,9,4,0) 100%);
-      pointer-events: none;
-    }
-    .nav > * {
-      pointer-events: auto;
-    }
-
-    .nav-logo {
-      font-weight: 600;
-      font-size: 14px;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--cream);
-      text-decoration: none;
-    }
-
-    .nav-links {
-      display: none;
-      gap: 24px;
-    }
-
-    .nav-links a {
-      font-size: 12px;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--cream-dim);
-      text-decoration: none;
-      transition: color 0.2s ease;
-    }
-    .nav-links a:hover {
-      color: var(--cream);
-    }
-
-    /* ---- RESPONSIVE ---- */
-    @media (min-width: 768px) {
-      .hero-content {
-        padding: 140px 32px 80px;
-      }
-      .container {
-        padding: 0 32px;
-      }
-      .nav {
-        padding: 20px 32px;
-      }
-      .nav-links {
-        display: flex;
-      }
-      .section {
-        padding: 100px 0;
-      }
-      .earnings-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .earn-card.hero-card {
-        grid-column: span 2;
-      }
-      .conditions-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .tech-list {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .cta-band {
-        padding: 64px 48px;
-      }
-    }
-
-    @media (min-width: 1024px) {
-      .container {
-        padding: 0 48px;
-      }
-      .hero-content {
-        padding: 160px 48px 96px;
-      }
-      .nav {
-        padding: 24px 48px;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      .reveal {
-        opacity: 1;
-        transform: none;
-        transition: none;
-      }
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Roboto+Condensed:wght@400;500;700&display=swap" rel="stylesheet">
+  <script type="module" crossorigin src="./assets/index-BSNe6kZ3.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-Dzn45_t8.css">
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav class="nav">
-    <a href="#" class="nav-logo">Logist</a>
-    <div class="nav-links">
-      <a href="#earn">Зарплата</a>
-      <a href="#conditions">Условия</a>
-      <a href="#tech">Техника</a>
-      <a href="#contact">Контакты</a>
+  <!-- SVG sprite: рукотворные иконки -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="i-check" viewBox="0 0 16 16">
+        <path d="M2.5 8.5 L6 12 L13.5 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"/>
+      </symbol>
+      <symbol id="i-arrow" viewBox="0 0 20 20">
+        <path d="M3 10 H16 M11 4.5 L16.5 10 L11 15.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <!-- Тонкая верхняя полоса -->
+  <div class="topbar">
+    <div class="wrap topbar__in">
+      <span class="topbar__label">Набор водителей кат. CE · ЮФО</span>
+      <a class="topbar__phone" data-contact="phone" href="tel:+78000000000">
+        <span class="topbar__phone-label">Горячая линия</span>
+        <span data-contact="phoneDisplay">8 800 000-00-00</span>
+      </a>
     </div>
-  </nav>
+  </div>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-bg">
-      <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=1920&q=80" alt="Тягач на шоссе">
-    </div>
-  <section class="hero">
-    <div class="hero-bg">
-      <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=1920&q=80" alt="DAF XF тягач на дороге">
-    </div>
-    <div class="hero-gradient"></div>
-    <div class="hero-content">
-      <div class="hero-tag reveal">Открыт набор водителей</div>
-      <h1 class="reveal reveal-delay-1">Водитель СЕ на DAF XF&nbsp;105 с&nbsp;автоматической КПП</h1>
-      <div class="hero-salary reveal reveal-delay-2">200 000 – 300 000 ₽ в месяц</div>
-      <p class="hero-note reveal reveal-delay-2">Рейсы из Крыма по ЮФО. Суточные 1 000 ₽/день выплачиваем вперед. Все расходы — на компанию.</p>
-      <div class="hero-actions reveal reveal-delay-3">
-        <a href="#" class="btn btn-primary">Написать в Telegram</a>
-        <a href="#" class="btn btn-ghost">Написать в Max</a>
-        <a href="#" class="btn btn-ghost">Позвонить</a>
-      </div>
-      <div class="hero-triggers reveal reveal-delay-4">
-        <span class="trigger">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-          Суточные 1000 ₽/день
-        </span>
-        <span class="trigger">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-          Все расходы оплачиваем
-        </span>
-        <span class="trigger">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-          Собственный сервис
-        </span>
-      </div>
-    </div>
-  </section>
+  <main>
 
-  <hr class="divider">
+    <!-- ============ HERO ============ -->
+    <header class="hero" id="top">
+      <!-- SVG-лайн-арт фуры на фоне -->
+      <svg class="hero__truck" viewBox="0 0 960 300" fill="none" aria-hidden="true" preserveAspectRatio="xMidYMax meet">
+        <g stroke="currentColor" stroke-width="1.4" stroke-linecap="square">
+          <!-- полуприцеп -->
+          <path d="M40 70 H560 V196 H40 Z"/>
+          <path d="M90 70 V196 M150 70 V196 M210 70 V196 M270 70 V196 M330 70 V196 M390 70 V196 M450 70 V196 M510 70 V196" stroke-width="0.7"/>
+          <path d="M40 96 H560" stroke-width="0.7"/>
+          <!-- рама -->
+          <path d="M40 196 H780"/>
+          <path d="M560 196 V214 H700"/>
+          <!-- кабина (каб-over, как у DAF XF) -->
+          <path d="M596 196 V64 Q596 44 618 44 H742 Q776 44 786 82 L796 124 Q800 140 800 156 V196"/>
+          <path d="M596 96 H780" stroke-width="0.9"/>
+          <path d="M612 110 H700 V168 H612 Z" stroke-width="0.9"/>
+          <path d="M712 96 L726 168" stroke-width="0.9"/>
+          <path d="M742 168 H786" stroke-width="0.9"/>
+          <path d="M596 168 H612" stroke-width="0.9"/>
+          <!-- колёса -->
+          <circle cx="140" cy="222" r="36"/>
+          <circle cx="140" cy="222" r="14" stroke-width="0.9"/>
+          <circle cx="216" cy="222" r="36"/>
+          <circle cx="216" cy="222" r="14" stroke-width="0.9"/>
+          <circle cx="640" cy="222" r="36"/>
+          <circle cx="640" cy="222" r="14" stroke-width="0.9"/>
+          <circle cx="724" cy="222" r="36"/>
+          <circle cx="724" cy="222" r="14" stroke-width="0.9"/>
+          <!-- земля -->
+          <path d="M0 258 H960" stroke-width="0.9"/>
+        </g>
+        <!-- линия маршрута -->
+        <path class="hero__route" d="M40 34 C 220 6, 420 30, 600 16 S 880 24, 940 12" stroke="currentColor" stroke-width="1.2" stroke-dasharray="6 8" fill="none"/>
+      </svg>
 
-  <!-- EARNINGS -->
-  <section class="section section-alt" id="earn">
-    <div class="container">
-      <div class="section-header reveal">
-        <div class="section-label">Финансы</div>
-        <h2>Сколько вы будете зарабатывать</h2>
-      </div>
-      <div class="earnings-grid">
-        <div class="earn-card reveal">
-          <div class="earn-value">20 000 – 40 000 ₽</div>
-          <div class="earn-label">за рейс 300–500 км</div>
-        </div>
-        <div class="earn-card reveal reveal-delay-1">
-          <div class="earn-value">40 000 – 80 000 ₽</div>
-          <div class="earn-label">за рейс 700–1000 км</div>
-        </div>
-        <div class="earn-card hero-card reveal reveal-delay-2">
-          <div class="earn-value">200 000 – 300 000 ₽</div>
-          <div class="earn-label">в месяц при 5–9 рейсах + суточные 1 000 ₽/день</div>
-        </div>
-      </div>
-      <p class="earn-note reveal">Средняя ставка — 25 ₽/км. Оплата зависит от типа груза, тоннажа и километража.</p>
-    </div>
-  </section>
+      <div class="wrap hero__in">
+        <p class="kicker kicker--light hero__kicker" data-hero="0">Набор водителей · ЮФО</p>
 
-  <hr class="divider">
+        <h1 class="hero__title">
+          <span class="hero__line"><span class="hero__line-in" data-hero="1">Водитель с категорией СЕ,</span></span>
+          <span class="hero__line"><span class="hero__line-in" data-hero="2">вы нам нужны</span></span>
+          <span class="hero__line hero__line--sub"><span class="hero__line-in" data-hero="3">на DAF XF 105 с автоматической КПП</span></span>
+        </h1>
 
-  <!-- CONDITIONS -->
-  <section class="section" id="conditions">
-    <div class="container">
-      <div class="section-header reveal">
-        <div class="section-label">Условия</div>
-        <h2>О чем не нужно переживать</h2>
-      </div>
-      <div class="conditions-grid">
-        <div class="condition-card reveal">
-          <div class="condition-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M2 12h20"/></svg>
-          </div>
-          <h3>Все расходы на нас</h3>
-          <p>Медосмотры, ГСМ, ремонты — компания оплачивает всё.</p>
+        <div class="hero__figure" data-hero="4">
+          <p class="hero__sum">200&nbsp;000&nbsp;–&nbsp;300&nbsp;000&nbsp;₽</p>
+          <p class="hero__sum-note">в месяц + 1&nbsp;000&nbsp;₽ суточные ежедневно</p>
         </div>
-        <div class="condition-card reveal reveal-delay-1">
-          <div class="condition-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          </div>
-          <h3>Стоянки оплачиваем</h3>
-          <p>Не тратите свои деньги на простой.</p>
-        </div>
-        <div class="condition-card reveal reveal-delay-2">
-          <div class="condition-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-          </div>
-          <h3>Гибкое оформление</h3>
-          <p>Начинаем по договору ГПХ. После первых рейсов — переводим на ТК РФ с соцпакетом.</p>
-        </div>
-        <div class="condition-card reveal reveal-delay-3">
-          <div class="condition-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-          </div>
-          <h3>5–9 рейсов в месяц</h3>
-          <p>Планируйте время, без простоев и перегруза.</p>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <hr class="divider">
+        <p class="hero__lead" data-hero="5">Рейсы из Крыма по ЮФО. Все расходы на компанию. Суточные выплачиваем вперёд.</p>
 
-  <!-- TECH -->
-  <section class="section section-alt" id="tech">
-    <div class="container">
-      <div class="section-header reveal">
-        <div class="section-label">Техника</div>
-        <h2>Работайте на надежной технике</h2>
-        <p class="section-sub">Тягачи DAF XF 105 с автоматической трансмиссией. Полуприцепы Krone. Год выпуска — 2013. По истечении года — возможна замена на более новый автомобиль.</p>
-      </div>
-      <div class="tech-visual reveal">
-        <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1200&q=80" alt="Тягач DAF XF 105 с полуприцепом">
-      </div>
-      <div class="tech-list">
-        <div class="tech-item reveal">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-          <span>Автоматическая КПП — меньше усталости в рейсе.</span>
+        <div class="hero__ctas" data-hero="6">
+          <a class="btn btn--fill" data-contact="telegram" href="https://t.me/logistics_drivers" target="_blank" rel="noopener">Написать в Telegram</a>
+          <a class="btn btn--ghost" data-contact="max" href="https://max.ru/logistics_drivers" target="_blank" rel="noopener">Написать в Max</a>
+          <a class="btn btn--ghost btn--arrow" data-contact="phone" href="tel:+78000000000">Позвонить <svg class="btn__ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
         </div>
-        <div class="tech-item reveal reveal-delay-1">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-          <span>Собственное СТО — быстрый ремонт без очередей.</span>
-        </div>
-        <div class="tech-item reveal reveal-delay-2">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          <span>Выезд механика при крупноузловых поломках в рейсе.</span>
-        </div>
-        <div class="tech-item reveal reveal-delay-3">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-          <span>Мелкие поломки устраняет водитель — компания компенсирует расходы.</span>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <hr class="divider">
-
-  <!-- ROUTES -->
-  <section class="section">
-    <div class="container">
-      <div class="section-header reveal">
-        <div class="section-label">Маршруты</div>
-        <h2>Где и что возим</h2>
-        <p class="section-sub">Основное направление — из Крыма по ЮФО. Дальние рейсы возможны до Урала.</p>
-      </div>
-      <div class="chips reveal">
-        <span class="chip">Зерновые</span>
-        <span class="chip">Деловой металл</span>
-        <span class="chip">Удобрения</span>
-        <span class="chip">Сахар</span>
-        <span class="chip">Мука</span>
-      </div>
-      <p class="earn-note reveal">Разнообразие грузов означает разные ставки. Выбирайте то, что подходит именно вам.</p>
-    </div>
-  </section>
-
-  <hr class="divider">
-
-  <!-- REQUIREMENTS -->
-  <section class="section section-accent">
-    <div class="container">
-      <div class="cta-band reveal">
-        <div class="section-label">Требования</div>
-        <h2>Кого мы ищем</h2>
-        <ul>
-          <li>Категория прав: СЕ</li>
-          <li>Опыт: рассматриваем всех, кто готов работать</li>
-          <li>Важно не стаж, а желание работать и зарабатывать</li>
+        <ul class="hero__triggers" data-hero="7">
+          <li><svg class="check" aria-hidden="true"><use href="#i-check"/></svg>Суточные 1000 ₽/день</li>
+          <li><svg class="check" aria-hidden="true"><use href="#i-check"/></svg>Все расходы оплачиваем</li>
+          <li><svg class="check" aria-hidden="true"><use href="#i-check"/></svg>Собственный сервис</li>
         </ul>
-        <a href="#" class="btn btn-primary">Написать в Telegram</a>
       </div>
-    </div>
-  </section>
 
-  <hr class="divider">
+      <!-- дорога с движущейся разметкой -->
+      <div class="hero__road" aria-hidden="true">
+        <svg class="hero__road-svg" viewBox="0 0 1440 64" preserveAspectRatio="none">
+          <line x1="0" y1="6"  x2="1440" y2="6"  stroke="currentColor" stroke-width="1" opacity="0.55"/>
+          <line x1="0" y1="58" x2="1440" y2="58" stroke="currentColor" stroke-width="1" opacity="0.55"/>
+          <line class="road-dash" x1="0" y1="32" x2="1440" y2="32" stroke="#ffd600" stroke-width="4" stroke-dasharray="46 34"/>
+        </svg>
+      </div>
+    </header>
 
-  <!-- FOOTER -->
-  <footer class="footer" id="contact">
-    <div class="container">
-      <h2 class="reveal">Свяжитесь с нами</h2>
-      <div class="footer-contacts reveal reveal-delay-1">
-        <div class="footer-contact">Telegram: <a href="#">[Telegram]</a></div>
-        <div class="footer-contact">Max: <a href="#">[Max]</a></div>
-        <div class="footer-contact">Телефон: <a href="#">[Телефон]</a></div>
+    <!-- ============ 01 · ЗАРАБОТОК ============ -->
+    <section class="sec sec--paper" id="zarabotok" aria-labelledby="h-zarabotok">
+      <div class="wrap">
+        <p class="kicker" data-reveal>01 · Заработок</p>
+        <h2 class="h2" id="h-zarabotok" data-reveal>Сколько вы будете зарабатывать</h2>
+
+        <div class="pay-table" data-reveal>
+          <div class="pay-row">
+            <p class="pay-row__num">20 000 – 40 000 ₽</p>
+            <p class="pay-row__cap">за рейс 300–500 км</p>
+          </div>
+          <div class="pay-row">
+            <p class="pay-row__num">40 000 – 80 000 ₽</p>
+            <p class="pay-row__cap">за рейс 700–1000 км</p>
+          </div>
+          <div class="pay-row pay-row--hero">
+            <p class="pay-row__num">200 000 – 300 000 ₽</p>
+            <p class="pay-row__cap">в месяц при 5–9 рейсах</p>
+          </div>
+          <div class="pay-row">
+            <p class="pay-row__num">+ 1 000 ₽/день</p>
+            <p class="pay-row__cap">суточные выплачиваем вперёд</p>
+          </div>
+        </div>
+
+        <p class="pay-foot" data-reveal>Средняя ставка — 25 ₽/км. Оплата зависит от типа груза (зерновые, деловой металл, удобрения, сахар, мука), перевезённого тоннажа и километража.</p>
       </div>
-      <div class="footer-actions reveal reveal-delay-2">
-        <a href="#" class="btn btn-primary">Написать в Telegram</a>
-        <a href="#" class="btn btn-ghost">Написать в Max</a>
-        <a href="#" class="btn btn-ghost">Позвонить</a>
+    </section>
+
+    <!-- ============ 02 · УСЛОВИЯ ============ -->
+    <section class="sec sec--dark" id="usloviya" aria-labelledby="h-usloviya">
+      <div class="wrap">
+        <p class="kicker kicker--light" data-reveal>02 · Условия</p>
+        <h2 class="h2" id="h-usloviya" data-reveal>Условия, о которых не&nbsp;нужно переживать</h2>
+
+        <ol class="conds" data-reveal>
+          <li class="cond">
+            <div class="cond__head">
+              <span class="cond__num">01</span>
+              <h3 class="cond__title">Все расходы на нас</h3>
+            </div>
+            <p class="cond__text">Медосмотры, ГСМ, ремонты — компания оплачивает всё.</p>
+          </li>
+          <li class="cond">
+            <div class="cond__head">
+              <span class="cond__num">02</span>
+              <h3 class="cond__title">Стоянки оплачиваем</h3>
+            </div>
+            <p class="cond__text">Не тратите свои деньги на простой.</p>
+          </li>
+          <li class="cond">
+            <div class="cond__head">
+              <span class="cond__num">03</span>
+              <h3 class="cond__title">Гибкое и честное оформление</h3>
+            </div>
+            <p class="cond__text">Начинаем работу по договору ГПХ. После успешного выполнения первых рейсов переводим на официальный трудовой договор (ТК РФ) с полным соцпакетом.</p>
+          </li>
+          <li class="cond">
+            <div class="cond__head">
+              <span class="cond__num">04</span>
+              <h3 class="cond__title">5–9 рейсов в месяц</h3>
+            </div>
+            <p class="cond__text">Планируйте своё время, без простоев и перегруза.</p>
+          </li>
+        </ol>
       </div>
-      <p class="earn-note reveal reveal-delay-2">Звоните или пишите прямо сейчас — ответим на все вопросы и поможем начать зарабатывать.</p>
-      <div class="footer-bottom reveal">
-        © 2026 Логистическая компания. Все права защищены.
+    </section>
+
+    <!-- ============ 03 · ТЕХНИКА ============ -->
+    <section class="sec sec--paper" id="tekhnika" aria-labelledby="h-tekhnika">
+      <div class="wrap">
+        <p class="kicker" data-reveal>03 · Техника</p>
+        <h2 class="h2" id="h-tekhnika" data-reveal>Работайте на надёжной технике</h2>
+
+        <div class="tech">
+          <div class="tech__spec" data-reveal>
+            <dl class="spec">
+              <div class="spec__row">
+                <dt>Тягач</dt>
+                <dd>DAF XF 105</dd>
+              </div>
+              <div class="spec__row">
+                <dt>КПП</dt>
+                <dd>автоматическая</dd>
+              </div>
+              <div class="spec__row">
+                <dt>Полуприцеп</dt>
+                <dd>Krone</dd>
+              </div>
+              <div class="spec__row">
+                <dt>Год выпуска</dt>
+                <dd>2013</dd>
+              </div>
+            </dl>
+            <p class="tech__note">По истечении года работы возможна замена автомобиля на более новый.</p>
+          </div>
+
+          <div class="tech__art" data-draw>
+            <svg viewBox="0 0 760 340" fill="none" role="img" aria-label="Линейный чертёж тягача DAF XF 105 с полуприцепом Krone">
+              <g stroke="currentColor" stroke-width="1.6" stroke-linecap="square">
+                <path class="draw" pathLength="1" d="M30 90 H430 V230 H30 Z"/>
+                <path class="draw" pathLength="1" stroke-width="0.9" d="M70 90 V230 M120 90 V230 M170 90 V230 M220 90 V230 M270 90 V230 M320 90 V230 M370 90 V230"/>
+                <path class="draw" pathLength="1" stroke-width="0.9" d="M30 118 H430"/>
+                <path class="draw" pathLength="1" d="M30 230 H640"/>
+                <path class="draw" pathLength="1" d="M462 230 V76 Q462 54 486 54 H618 Q654 54 664 94 L674 138 Q678 154 678 170 V230"/>
+                <path class="draw" pathLength="1" stroke-width="0.9" d="M462 122 H660"/>
+                <path class="draw" pathLength="1" stroke-width="0.9" d="M478 138 H560 V200 H478 Z"/>
+                <path class="draw" pathLength="1" stroke-width="0.9" d="M572 122 L588 200"/>
+                <path class="draw" pathLength="1" stroke-width="0.9" d="M618 200 H664"/>
+                <path class="draw" pathLength="1" d="M430 230 L462 230 M462 230 V246 H560"/>
+                <circle class="draw" pathLength="1" cx="120" cy="262" r="38"/>
+                <circle class="draw" pathLength="1" stroke-width="0.9" cx="120" cy="262" r="15"/>
+                <circle class="draw" pathLength="1" cx="200" cy="262" r="38"/>
+                <circle class="draw" pathLength="1" stroke-width="0.9" cx="200" cy="262" r="15"/>
+                <circle class="draw" pathLength="1" cx="520" cy="262" r="38"/>
+                <circle class="draw" pathLength="1" stroke-width="0.9" cx="520" cy="262" r="15"/>
+                <circle class="draw" pathLength="1" cx="608" cy="262" r="38"/>
+                <circle class="draw" pathLength="1" stroke-width="0.9" cx="608" cy="262" r="15"/>
+                <path class="draw" pathLength="1" stroke-width="0.9" d="M10 300 H750"/>
+              </g>
+            </svg>
+          </div>
+        </div>
+
+        <ul class="tech-list" data-reveal>
+          <li>Автоматическая КПП — меньше усталости в рейсе.</li>
+          <li>Собственное СТО компании — быстрый ремонт без очередей.</li>
+          <li>Выезд штатного механика при крупноузловых поломках в рейсе.</li>
+          <li>Мелкие поломки (например, прокол колеса) водитель устраняет самостоятельно с полной компенсацией компанией расходов на ремонт.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ 04 · МАРШРУТЫ И ГРУЗЫ ============ -->
+    <section class="sec sec--dark" id="marshruty" aria-labelledby="h-marshruty">
+      <div class="wrap">
+        <p class="kicker kicker--light" data-reveal>04 · Маршруты и грузы</p>
+        <h2 class="h2" id="h-marshruty" data-reveal>Где и что возим</h2>
+
+        <div class="route" data-draw>
+          <svg class="route__svg" viewBox="0 0 1000 440" fill="none" role="img" aria-label="Схема маршрута: из Крыма по ЮФО, далее возможны направления до Урала">
+            <path class="draw route__path" pathLength="1" d="M120 360 C 230 285, 320 320, 450 245 S 620 165, 700 140" stroke="#ffd600" stroke-width="2.2"/>
+            <path class="draw route__path route__path--next" pathLength="1" d="M700 140 C 790 112, 880 68, 960 40" stroke="#d2ff00" stroke-width="2"/>
+            <g class="route__nodes" stroke="currentColor" stroke-width="1.5">
+              <circle class="draw" pathLength="1" cx="120" cy="360" r="9"/>
+              <circle class="draw" pathLength="1" cx="700" cy="140" r="7"/>
+            </g>
+            <g class="route__labels">
+              <text x="120" y="402" text-anchor="middle">Крым</text>
+              <text x="700" y="114" text-anchor="middle">ЮФО</text>
+              <text x="905" y="24"  text-anchor="middle" class="route__label-dim">до Урала</text>
+            </g>
+          </svg>
+        </div>
+
+        <p class="route__lead" data-reveal>Основное направление: из Крыма по ЮФО. Дальние рейсы: возможны направления до Урала.</p>
+      </div>
+
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee__track">
+          <span class="marquee__chunk">Зерновые · Деловой металл · Удобрения · Сахар · Мука · </span><span class="marquee__chunk">Зерновые · Деловой металл · Удобрения · Сахар · Мука · </span>
+        </div>
+      </div>
+
+      <div class="wrap">
+        <p class="route__sub" data-reveal>Разнообразие грузов означает разные ставки. Вы сможете выбирать то, что подходит именно вам.</p>
+      </div>
+    </section>
+
+    <!-- ============ 05 · ТРЕБОВАНИЯ ============ -->
+    <section class="sec sec--paper" id="trebovaniya" aria-labelledby="h-trebovaniya">
+      <div class="wrap">
+        <p class="kicker" data-reveal>05 · Требования</p>
+        <h2 class="h2" id="h-trebovaniya" data-reveal>Кого мы ищем</h2>
+
+        <p class="req__cat" data-reveal>Категория прав: <span>СЕ</span></p>
+        <p class="req__exp" data-reveal>Опыт: рассматриваем всех, кто готов работать.</p>
+        <p class="req__accent" data-reveal>Не важно, сколько вы за рулём — важно ваше желание работать и&nbsp;зарабатывать.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer" aria-labelledby="h-contacts">
+    <div class="wrap">
+      <h2 class="h2 footer__title" id="h-contacts" data-reveal>Свяжитесь с нами удобным способом</h2>
+
+      <div class="footer__ctas" data-reveal>
+        <a class="btn btn--fill btn--big" data-contact="telegram" href="https://t.me/logistics_drivers" target="_blank" rel="noopener">Написать в Telegram</a>
+        <a class="btn btn--ghost btn--big" data-contact="max" href="https://max.ru/logistics_drivers" target="_blank" rel="noopener">Написать в Max</a>
+        <a class="btn btn--ghost btn--big btn--arrow" data-contact="phone" href="tel:+78000000000">Позвонить сейчас <svg class="btn__ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+
+      <a class="footer__phone" data-contact="phone" href="tel:+78000000000" data-reveal>
+        <span data-contact="phoneDisplay">8 800 000-00-00</span>
+      </a>
+
+      <p class="footer__lead" data-reveal>Звоните или пишите прямо сейчас — ответим на все вопросы и поможем начать зарабатывать.</p>
+
+      <div class="footer__bottom">
+        <p>© <span id="year">2025</span> · Логистическая компания · Набор водителей кат. CE</p>
+        <a class="footer__top" href="#top">Наверх <svg class="footer__top-ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
       </div>
     </div>
   </footer>
 
-  <script>
-    // Scroll reveal with early trigger (10% visibility)
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, {
-      threshold: 0.1,
-      rootMargin: '0px 0px -5% 0px'
-    });
-
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-    // Hero elements animate immediately
-    document.querySelectorAll('.hero .reveal').forEach(el => {
-      el.classList.add('visible');
-    });
-  </script>
-
+  <noscript>
+    <style>
+      [data-hero], [data-reveal] { opacity: 1 !important; transform: none !important; }
+      .hero__line-in { transform: none !important; }
+      .draw { stroke-dashoffset: 0 !important; }
+      .route__path--next { opacity: 1 !important; }
+    </style>
+  </noscript>
 </body>
 </html>
